@@ -168,7 +168,7 @@ function ServiceDetail() {
 
           <div className="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg md:flex md:justify-between md:items-center">
             <div className="text-lg font-bold text-blue-900">
-              Price: <span className="text-green-600">₹5000</span> / $60
+              Price: <span className="text-green-600">INR 5000</span> / $60
             </div>
             <div className="flex gap-4">
               <Button
