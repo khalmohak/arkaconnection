@@ -11,14 +11,26 @@ import {
   Star,
 } from "lucide-react";
 import VideoTestimonials from "@/app/appComponents/VideoTestimonials";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { db, firebaseApp } from "@/config/firebase";
+import { collection, addDoc } from "firebase/firestore";
+import { useParams } from "next/navigation";
 
-const CourseDetail = ({ courseId }) => {
+const CourseDetail = () => {
+  const { courseId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeAccordion, setActiveAccordion] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [enrollmentData, setEnrollmentData] = useState({
+    name: "",
+    email: "",
+  });
 
   // Mock data - In real app, fetch this based on courseId
   const courseData = {
     title: "Advanced Spiritual Healing & Meditation",
+    price: 200,
+    discountedPrice: 150,
     description:
       "Get an insight into everything the universe holds for your future.Enroll today in the best astrology course online and kick-start learning with masterfully-crafted guidance from world-renowned astrologer, Mr. Alok Khandelwal.",
     videoUrl: "https://youtube.com/embed/example",
@@ -144,6 +156,25 @@ const CourseDetail = ({ courseId }) => {
     },
   };
 
+  const handleEnrollSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      await addDoc(collection(db, "enrollments"), {
+        ...enrollmentData,
+        courseId,
+        timestamp: new Date(),
+      });
+      alert("Enrollment successful!");
+      setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error saving enrollment: ", error);
+      alert("Failed to enroll. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
       {/* Hero Section */}
@@ -156,20 +187,21 @@ const CourseDetail = ({ courseId }) => {
             <p className="text-lg text-gray-700 mb-8">
               {courseData.description}
             </p>
+            <p className="text-2xl font-bold text-purple-900 mb-4">
+              Price:{" "}
+              <span className="line-through text-gray-500">
+                ${courseData.price}
+              </span>{" "}
+              <span className="text-green-600">
+                ${courseData.discountedPrice}
+              </span>
+            </p>
             <button
               onClick={() => setIsModalOpen(true)}
               className="bg-purple-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-purple-700 transition-colors"
             >
               Enroll Now
             </button>
-          </div>
-          <div className="aspect-video rounded-xl overflow-hidden shadow-2xl">
-            <iframe
-              className="w-full h-full"
-              src={courseData.videoUrl}
-              title="Course Introduction"
-              allowFullScreen
-            />
           </div>
         </div>
       </section>
@@ -484,26 +516,63 @@ const CourseDetail = ({ courseId }) => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-xl p-6 max-w-md w-full">
             <h3 className="text-2xl font-bold text-purple-900 mb-4">
-              Enroll in Course
+              Enroll in {courseData.title}
             </h3>
-            <form className="space-y-4">
+            <form onSubmit={handleEnrollSubmit} className="space-y-4">
               <input
                 type="text"
                 placeholder="Your Name"
                 className="w-full p-3 border border-gray-300 rounded-lg"
+                value={enrollmentData.name}
+                onChange={(e) =>
+                  setEnrollmentData({ ...enrollmentData, name: e.target.value })
+                }
+                required
               />
               <input
                 type="email"
                 placeholder="Your Email"
                 className="w-full p-3 border border-gray-300 rounded-lg"
+                value={enrollmentData.email}
+                onChange={(e) =>
+                  setEnrollmentData({
+                    ...enrollmentData,
+                    email: e.target.value,
+                  })
+                }
+                required
               />
               <button
                 type="submit"
-                className="w-full bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+                disabled={isLoading}
+                className={`w-full bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors ${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                }`}
               >
-                Confirm Enrollment
+                {isLoading ? "Processing..." : "Confirm Enrollment"}
               </button>
             </form>
+            <PayPalScriptProvider options={{ "client-id": "your-client-id" }}>
+              <PayPalButtons
+                createOrder={(data, actions) => {
+                  return actions.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: courseData.discountedPrice.toString(),
+                        },
+                      },
+                    ],
+                  });
+                }}
+                onApprove={(data, actions) => {
+                  return actions.order.capture().then((details) => {
+                    alert("Payment successful!");
+                    setIsModalOpen(false);
+                  });
+                }}
+              />
+            </PayPalScriptProvider>
             <button
               onClick={() => setIsModalOpen(false)}
               className="mt-4 text-gray-600 hover:text-gray-800"

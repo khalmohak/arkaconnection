@@ -13,9 +13,9 @@ function Layout({ children }: any) {
     //     2xl:min-h-screen 2xl:w-full 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center 2xl:gap-y-20
     // "
     >
-      {/* <div className="mt-10 w-full">
+      <div className="mt-10 mb-10 w-full">
         <Navbar />
-      </div> */}
+      </div>
       {children}
       <Footer />
     </div>
