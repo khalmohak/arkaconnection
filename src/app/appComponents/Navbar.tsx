@@ -17,7 +17,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className="relative">
+    <nav className="relative w-full z-50 mb-4 mt-4">
       <div
         className="mx-auto w-[95%] flex justify-between items-center
         bg-[#dad7cd] bg-opacity-35 border border-gray-400 backdrop-blur-sm
@@ -81,7 +81,7 @@ function Navbar() {
                 transition-transform duration-200 group-hover:scale-x-100"
               />
             </button>
-
+          
             <div
               className="absolute right-0 mt-2 w-64 opacity-0 invisible group-hover:opacity-100
               group-hover:visible transition-all duration-200 transform -translate-x-1/4"
@@ -100,9 +100,18 @@ function Navbar() {
                     {course.name}
                   </button>
                 ))}
+                {/* Add the "View All" button */}
+                <button
+                  onClick={() => router.push('/courses')}
+                  className="w-full text-left px-6 py-4 hover:bg-gray-300/30 transition-all
+                    duration-200 block text-gray-700 font-semibold border-t border-gray-400"
+                >
+                  View All
+                </button>
               </div>
             </div>
           </div>
+
         </div>
 
         {/* Mobile menu */}

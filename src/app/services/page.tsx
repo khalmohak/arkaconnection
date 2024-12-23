@@ -1,32 +1,92 @@
-import React from 'react'
-import Footer from '../appComponents/Footer'
-import Navbar from '../appComponents/Navbar'
-import Testimonials from '../appComponents/Testimonials'
+"use client";
 
-function Services() {
+import React, { useState } from "react";
+import Layout from "@/components/common/layout";
+import { servicesData } from "@/data/services";
+
+
+
+const serviceTags = [
+  "All",
+  ...new Set(servicesData.map((service) => service.tag)),
+];
+
+function ServicesPage() {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+
+  const filteredServices =
+    selectedCategory === "All"
+      ? servicesData
+      : servicesData.filter((service) => service.tag === selectedCategory);
+
   return (
-    <div
-    className='
-        min-h-screen w-full flex flex-col justify-center items-center gap-y-20 bg-white
-        sm:min-h-screen sm:w-full sm:flex sm:flex-col sm:justify-center sm:items-center sm:gap-y-20
-        md:min-h-screen md:w-full md:flex md:flex-col md:justify-center md:items-center md:gap-y-20
-        lg:min-h-screen lg:w-full lg:flex lg:flex-col lg:justify-center lg:items-center lg:gap-y-20
-        xl:min-h-screen xl:w-full xl:flex xl:flex-col xl:justify-center xl:items-center xl:gap-y-20
-        2xl:min-h-screen 2xl:w-full 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center 2xl:gap-y-20
-    '
-    >
-      
-        <div className='mt-10 w-full'>
-            <Navbar />
+    <Layout>
+      <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white py-8">
+        <div className="container mx-auto mb-10">
+          <h1 className="text-4xl font-extrabold text-center text-purple-900 mb-10">
+            Explore Our Services
+          </h1>
+
+          {/* Filter Section */}
+          <div className="flex flex-wrap justify-center gap-4 mb-12">
+            {serviceTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setSelectedCategory(tag)}
+                className={`px-6 py-2 rounded-lg text-lg font-semibold ${
+                  selectedCategory === tag
+                    ? "bg-purple-600 text-white"
+                    : "bg-gray-200 hover:bg-gray-300 text-gray-700"
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+
+          {/* Services Section */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {filteredServices.map((service) => (
+              <div
+                key={service.slug}
+                className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow flex flex-col"
+              >
+                <img
+                  src={service.image}
+                  alt={service.name}
+                  className="w-full h-56 object-cover rounded-t-xl"
+                />
+                <div className="p-4 flex flex-col flex-grow">
+                  <h3 className="text-xl font-bold text-purple-900 mb-2">
+                    {service.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 mb-4 flex-grow">
+                    {service.description}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <div>
+                      <p className="text-gray-500 line-through">
+                        ${service.price.toLocaleString()}
+                      </p>
+                      <p className="text-lg text-green-600 font-bold">
+                        ${service.discountedPrice.toLocaleString()}
+                      </p>
+                    </div>
+                    <a
+                      href={`/services/${service.slug}`}
+                      className="bg-purple-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-purple-700"
+                    >
+                      View Details
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-
-        <Testimonials />
-
-        <Footer />
-
-
-    </div>
-  )
+      </div>
+    </Layout>
+  );
 }
 
-export default Services
+export default ServicesPage;
