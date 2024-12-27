@@ -10,286 +10,381 @@ export const CourseTags = [
 export const HomePageCourseList = [
   {
     tag: "Astrology",
-    name: "AstroKapi Live online Course",
-    description: "Learn the fundamentals of astrology.",
-    price: 100,
-    discountedPrice: 80,
-    slug: "astrology-basics-1",
-    image:'/astrokapi.webp'
+    name: "Predictions with Annual Horoscope",
+    description:
+      "Learn comprehensive Tithi Pravesh chart analysis and predictions",
+    price: 14999,
+    discountedPrice: 11999,
+    slug: "predictions-annual-horoscope",
   },
   {
     tag: "Astrology",
-    name: "VedantKapi - Gita Certificate Course",
-    description: "Learn the fundamentals of astrology.",
-    price: 100,
-    discountedPrice: 80,
-    slug: "astrology-basics-1",
-    image:'/vedantkapi.webp'
+    name: "Transit Workshop",
+    description:
+      "Master special transit techniques and practical prediction rules",
+    price: 12999,
+    discountedPrice: 9999,
+    slug: "transit-workshop",
+  },
+  {
+    tag: "Numerology",
+    name: "Karmic Code Reading with Numerology",
+    description: "Learn Vedic numerology and its applications in life analysis",
+    price: 13999,
+    discountedPrice: 10999,
+    slug: "karmic-code-numerology",
+  },
+  {
+    tag: "Palmistry",
+    name: "Karmic Code Reading with Palmistry",
+    description: "Master the art of palm reading and karmic analysis",
+    price: 11999,
+    discountedPrice: 9999,
+    slug: "karmic-code-palmistry",
+  },
+  {
+    tag: "Spirituality",
+    name: "VedantKapi - Yogadarshan",
+    description: "Comprehensive study of Yoga philosophy and spiritual texts",
+    price: 16999,
+    discountedPrice: 13999,
+    slug: "vedantkapi-yogadarshan",
   },
   {
     tag: "Astrology",
-    name: "Bhava Lords in Different Bhavas",
-    description: "Learn the fundamentals of astrology.",
-    price: 100,
-    discountedPrice: 80,
-    slug: "astrology-basics-1",
-    image:'/bhava-lords.webp'
+    name: "Arka-connection Live Astrology",
+    description: "Complete Vedic astrology course with practical applications",
+    price: 19999,
+    discountedPrice: 15999,
+    slug: "arka-connection-astrology",
   },
 ];
 
 export const CourseList = [
-  // Astrology
   {
     tag: "Astrology",
-    name: "Astrology Basics",
-    description: "Learn the fundamentals of astrology.",
-    price: 100,
-    discountedPrice: 80,
-    slug: "astrology-basics-1",
-  },
-  {
-    tag: "Astrology",
-    name: "Horoscope Reading",
-    description: "Master horoscope reading techniques.",
-    price: 150,
-    discountedPrice: 120,
-    slug: "horoscope-reading-2",
+    name: "Predictions with Annual Horoscope",
+    description:
+      "Learn comprehensive Tithi Pravesh chart analysis and predictions",
+    price: 14999,
+    discountedPrice: 11999,
+    slug: "predictions-annual-horoscope",
   },
   {
     tag: "Astrology",
-    name: "Advanced Astrology",
-    description: "Dive deep into advanced astrological concepts.",
-    price: 200,
-    discountedPrice: 160,
-    slug: "advanced-astrology-3",
+    name: "Transit Workshop",
+    description:
+      "Master special transit techniques and practical prediction rules",
+    price: 12999,
+    discountedPrice: 9999,
+    slug: "transit-workshop",
+  },
+  {
+    tag: "Numerology",
+    name: "Karmic Code Reading with Numerology",
+    description: "Learn Vedic numerology and its applications in life analysis",
+    price: 13999,
+    discountedPrice: 10999,
+    slug: "karmic-code-numerology",
+  },
+  {
+    tag: "Palmistry",
+    name: "Karmic Code Reading with Palmistry",
+    description: "Master the art of palm reading and karmic analysis",
+    price: 11999,
+    discountedPrice: 9999,
+    slug: "karmic-code-palmistry",
+  },
+  {
+    tag: "Spirituality",
+    name: "VedantKapi - Yogadarshan",
+    description: "Comprehensive study of Yoga philosophy and spiritual texts",
+    price: 16999,
+    discountedPrice: 13999,
+    slug: "vedantkapi-yogadarshan",
   },
   {
     tag: "Astrology",
-    name: "Astrological Predictions",
-    description: "Learn to make accurate predictions.",
-    price: 180,
-    discountedPrice: 140,
-    slug: "astrological-predictions-4",
-  },
-  {
-    tag: "Astrology",
-    name: "Zodiac Signs Mastery",
-    description: "Understand zodiac signs in depth.",
-    price: 130,
-    discountedPrice: 100,
-    slug: "zodiac-signs-mastery-5",
-  },
-
-  // Numerology
-  {
-    tag: "Numerology",
-    name: "Numerology Basics",
-    description: "Discover the basics of numerology.",
-    price: 90,
-    discountedPrice: 70,
-    slug: "numerology-basics-6",
-  },
-  {
-    tag: "Numerology",
-    name: "Life Path Numbers",
-    description: "Understand life path numbers.",
-    price: 120,
-    discountedPrice: 90,
-    slug: "life-path-numbers-7",
-  },
-  {
-    tag: "Numerology",
-    name: "Master Numbers Explained",
-    description: "Unravel the secrets of master numbers.",
-    price: 140,
-    discountedPrice: 110,
-    slug: "master-numbers-explained-8",
-  },
-  {
-    tag: "Numerology",
-    name: "Numerology for Beginners",
-    description: "An introduction to numerology for novices.",
-    price: 80,
-    discountedPrice: 60,
-    slug: "numerology-for-beginners-9",
-  },
-  {
-    tag: "Numerology",
-    name: "Numerology in Daily Life",
-    description: "Apply numerology to enhance daily life.",
-    price: 100,
-    discountedPrice: 75,
-    slug: "numerology-daily-life-10",
-  },
-
-  // Vastu
-  {
-    tag: "Vastu",
-    name: "Vastu for Homes",
-    description: "Create harmony in your living space.",
-    price: 110,
-    discountedPrice: 85,
-    slug: "vastu-for-homes-11",
-  },
-  {
-    tag: "Vastu",
-    name: "Office Vastu",
-    description: "Optimize your office for success.",
-    price: 140,
-    discountedPrice: 105,
-    slug: "office-vastu-12",
-  },
-  {
-    tag: "Vastu",
-    name: "Vastu Shastra Basics",
-    description: "Learn the principles of Vastu Shastra.",
-    price: 100,
-    discountedPrice: 80,
-    slug: "vastu-shastra-basics-13",
-  },
-  {
-    tag: "Vastu",
-    name: "Vastu for Prosperity",
-    description: "Enhance prosperity through Vastu.",
-    price: 150,
-    discountedPrice: 120,
-    slug: "vastu-for-prosperity-14",
-  },
-  {
-    tag: "Vastu",
-    name: "Advanced Vastu Practices",
-    description: "Explore advanced Vastu techniques.",
-    price: 180,
-    discountedPrice: 140,
-    slug: "advanced-vastu-practices-15",
-  },
-
-  // Palmistry
-  {
-    tag: "Palmistry",
-    name: "Palmistry Basics",
-    description: "Decode the lines on your palms.",
-    price: 90,
-    discountedPrice: 70,
-    slug: "palmistry-basics-16",
-  },
-  {
-    tag: "Palmistry",
-    name: "Reading Hand Shapes",
-    description: "Understand the significance of hand shapes.",
-    price: 110,
-    discountedPrice: 85,
-    slug: "reading-hand-shapes-17",
-  },
-  {
-    tag: "Palmistry",
-    name: "Finger Analysis",
-    description: "Learn the art of finger analysis.",
-    price: 130,
-    discountedPrice: 100,
-    slug: "finger-analysis-18",
-  },
-  {
-    tag: "Palmistry",
-    name: "Love Lines in Palmistry",
-    description: "Decode love lines on the palms.",
-    price: 100,
-    discountedPrice: 75,
-    slug: "love-lines-palmistry-19",
-  },
-  {
-    tag: "Palmistry",
-    name: "Advanced Palmistry",
-    description: "Master advanced palmistry techniques.",
-    price: 150,
-    discountedPrice: 120,
-    slug: "advanced-palmistry-20",
-  },
-
-  // Ayurveda
-  {
-    tag: "Ayurveda",
-    name: "Ayurveda Basics",
-    description: "Discover the science of Ayurveda.",
-    price: 100,
-    discountedPrice: 80,
-    slug: "ayurveda-basics-21",
-  },
-  {
-    tag: "Ayurveda",
-    name: "Ayurvedic Diet",
-    description: "Plan diets based on Ayurvedic principles.",
-    price: 120,
-    discountedPrice: 90,
-    slug: "ayurvedic-diet-22",
-  },
-  {
-    tag: "Ayurveda",
-    name: "Herbal Remedies",
-    description: "Learn about Ayurvedic herbal remedies.",
-    price: 140,
-    discountedPrice: 110,
-    slug: "herbal-remedies-23",
-  },
-  {
-    tag: "Ayurveda",
-    name: "Ayurvedic Massage",
-    description: "Explore Ayurvedic massage techniques.",
-    price: 130,
-    discountedPrice: 100,
-    slug: "ayurvedic-massage-24",
-  },
-  {
-    tag: "Ayurveda",
-    name: "Yoga and Ayurveda",
-    description: "Integrate yoga with Ayurvedic practices.",
-    price: 150,
-    discountedPrice: 120,
-    slug: "yoga-ayurveda-25",
-  },
-
-  // Spirituality
-  {
-    tag: "Spirituality",
-    name: "Meditation Techniques",
-    description: "Learn different meditation methods.",
-    price: 90,
-    discountedPrice: 70,
-    slug: "meditation-techniques-26",
-  },
-  {
-    tag: "Spirituality",
-    name: "Chakra Healing",
-    description: "Balance your chakras through healing.",
-    price: 130,
-    discountedPrice: 100,
-    slug: "chakra-healing-27",
-  },
-  {
-    tag: "Spirituality",
-    name: "Spiritual Growth",
-    description: "Expand your spiritual horizons.",
-    price: 150,
-    discountedPrice: 120,
-    slug: "spiritual-growth-28",
-  },
-  {
-    tag: "Spirituality",
-    name: "Mindfulness Practice",
-    description: "Practice mindfulness daily.",
-    price: 110,
-    discountedPrice: 85,
-    slug: "mindfulness-practice-29",
-  },
-  {
-    tag: "Spirituality",
-    name: "Advanced Meditation",
-    description: "Deep dive into advanced meditation.",
-    price: 180,
-    discountedPrice: 140,
-    slug: "advanced-meditation-30",
+    name: "Arka-connection Live Astrology",
+    description: "Complete Vedic astrology course with practical applications",
+    price: 19999,
+    discountedPrice: 15999,
+    slug: "arka-connection-astrology",
   },
 ];
+
+export const CourseDetailData = [
+  {
+      title: "Predictions with Annul Horoscope/ तिथि प्रवेश कुण्डली",
+      price: 14999,
+      discountedPrice: 11999,
+      slug: "predictions-annual-horoscope",
+      tag: "Astrology",
+      description: "A comprehensive masterclass covering Tithi pravesh chart and its practical applications in Vedic astrology. Learn how to make precise predictions using annual horoscopes through ancient and tested methodologies.",
+      videoUrl: "https://example.com/annual-horoscope-preview",
+      stats: {
+        duration: "30 hours",
+        enrolled: "500+",
+        videos: "45+",
+        support: "3 months",
+      },
+      benefits: [
+        {
+          title: "Complete Foundation",
+          description: "Master the fundamental concepts of Tithi Pravesh chart and its elements",
+          icon: "/icons/foundation.svg",
+        },
+        {
+          title: "Practical Analysis",
+          description: "Learn chart analysis techniques with real-world examples and applications",
+          icon: "/icons/analysis.svg",
+        },
+        {
+          title: "Prediction Mastery",
+          description: "Develop expertise in daily, monthly and yearly predictions",
+          icon: "/icons/prediction.svg",
+        }
+      ],
+      curriculum: [
+        {
+          title: "Fundamentals of Tithi Pravesh",
+          content: [
+            "What is Tithi Pravesh chart?",
+            "Role of five elements in Tithi Pravesh chart",
+            "Tithi Pravesh chart and Dagdha Rashis",
+            "Importance of Lagna lord in Tithi Pravesh chart"
+          ]
+        },
+        {
+          title: "Predictive Techniques",
+          content: [
+            "Comparison with Natal Chart to outline coming year events",
+            "Significant events predictions",
+            "Daily & monthly predictions",
+            "Ashtakvarga in Tithi Pravesh chart"
+          ]
+        },
+        {
+          title: "Advanced Applications",
+          content: [
+            "How to use Dasha in Tithi Pravesh chart",
+            "Practical chart analysis",
+            "Integration of multiple prediction techniques",
+            "Real-world case studies"
+          ]
+        }
+      ],
+      mentor: {
+        name: "Acharya Vedashvapati",
+        image: "/mentors/vedashvapati.jpg",
+        description: "A renowned Vedic astrologer with over 20 years of experience",
+        credentials: "Expert in Tithi Pravesh and predictive astrology"
+      },
+      faqs: [
+        {
+          question: "Do I need prior knowledge of astrology?",
+          answer: "Basic understanding of astrology fundamentals is recommended but not mandatory. The course is designed to accommodate both beginners and advanced practitioners."
+        },
+        {
+          question: "How will I view the webinars?",
+          answer: "Live webinars are conducted via Zoom platform. You'll receive clear instructions to join. You need good internet access and a device with video/audio capabilities."
+        },
+        {
+          question: "What if I can't attend live sessions?",
+          answer: "You'll have full access to recorded webinars for at least 90 days after the live broadcast."
+        }
+      ]
+    },
+    {
+      title: "Transit Workshop",
+      price: 12999,
+      discountedPrice: 9999,
+      slug: "transit-workshop",
+      tag: "Astrology",
+      description: "Master special transit techniques not available in standard texts, with tested practical rules for accurate predictions. Learn exclusive insights and methodologies developed through years of research and practice.",
+      videoUrl: "https://example.com/transit-workshop-preview",
+      stats: {
+        duration: "25 hours",
+        enrolled: "400+",
+        videos: "35+",
+        support: "3 months",
+      },
+      benefits: [
+        {
+          title: "Exclusive Knowledge",
+          description: "Access to special transit techniques not found in standard texts",
+          icon: "/icons/exclusive.svg",
+        },
+        {
+          title: "Practical Application",
+          description: "Learn tested and proven prediction techniques",
+          icon: "/icons/practical.svg",
+        },
+        {
+          title: "Comprehensive Coverage",
+          description: "Master all aspects of transit predictions",
+          icon: "/icons/comprehensive.svg",
+        }
+      ],
+      curriculum: [
+        {
+          title: "Transit Fundamentals",
+          content: [
+            "Transit of Saturn, Jupiter & Rahu/Ketu",
+            "Transit of planets over their Natal Positions",
+            "Understanding basic transit principles"
+          ]
+        },
+        {
+          title: "Special Positions",
+          content: [
+            "Sadhe Sati & Dhaiyya Results",
+            "Transit of Planets over other natal planets",
+            "Transit of Lagna lord and Bhava lord"
+          ]
+        },
+        {
+          title: "Practical Applications",
+          content: [
+            "Snapshot prediction techniques",
+            "Case studies and examples",
+            "Real-world applications"
+          ]
+        }
+      ],
+      mentor: {
+        name: "Acharya Vedashvapati",
+        image: "/mentors/vedashvapati.jpg",
+        description: "Expert in transit predictions with decades of experience",
+        credentials: "Developer of unique transit prediction techniques"
+      },
+      faqs: [
+        {
+          question: "Is this course suitable for beginners?",
+          answer: "While some basic knowledge of astrology is helpful, the course is structured to accommodate learners at all levels."
+        },
+        {
+          question: "What makes this transit workshop unique?",
+          answer: "This workshop teaches special techniques not available in standard texts, based on practical research and testing."
+        }
+      ]
+    },
+    {
+      title: "Retrograde and Combust Graha Workshop",
+      price: 13999,
+      discountedPrice: 10999,
+      slug: "retrograde-combust-workshop",
+      tag: "Astrology",
+      description: "Comprehensive exploration of retrograde and combust planets, their effects, and predictive techniques in Vedic astrology.",
+      videoUrl: "https://example.com/retrograde-workshop-preview",
+      stats: {
+        duration: "30 hours",
+        enrolled: "350+",
+        videos: "40+",
+        support: "3 months",
+      },
+      benefits: [
+        {
+          title: "Deep Understanding",
+          description: "Master the concepts of retrograde and combust planets",
+          icon: "/icons/understanding.svg",
+        },
+        {
+          title: "Comprehensive Analysis",
+          description: "Learn effects of all planets in retrograde and combustion",
+          icon: "/icons/analysis.svg",
+        },
+        {
+          title: "Practical Applications",
+          description: "Apply knowledge to real-world predictions",
+          icon: "/icons/practical.svg",
+        }
+      ],
+      curriculum: [
+        {
+          title: "Retrograde Fundamentals",
+          content: [
+            "What is Retrograde planet",
+            "When do Rahu and Ketu become direct and results",
+            "Effects of Retrograde planet (Mercury, Mars, Jupiter, Venus, Saturn, Rahu, Ketu)",
+            "Planets in signs of Retrograde Planet"
+          ]
+        },
+        {
+          title: "House and Dasha Effects",
+          content: [
+            "Effects of house when Lord is Retrograde",
+            "Dasha of retrograde planet",
+            "Impact on predictions and timing"
+          ]
+        },
+        {
+          title: "Combustion Studies",
+          content: [
+            "What is Combustion",
+            "Benefits of combustion",
+            "Effects of Combust planet (Moon, Mercury, Mars, Jupiter, Venus, Saturn)",
+            "Maha Vipreet Raj Yog formation and results"
+          ]
+        }
+      ],
+      mentor: {
+        name: "Acharya Vedashvapati",
+        image: "/mentors/vedashvapati.jpg",
+        description: "Specialist in planetary movements and retrograde effects",
+        credentials: "Expert in combustion and retrograde calculations"
+      }
+    },
+    {
+      title: "Karmic Code Reading with Palmistry Course",
+      price: 11999,
+      discountedPrice: 9999,
+      slug: "karmic-code-palmistry",
+      tag: "Palmistry",
+      description: "Embark on a fascinating journey into palmistry, where the lines on your hands tell a unique story about your life. Learn to interpret the hidden messages encoded in palms through ancient wisdom.",
+      videoUrl: "https://example.com/palmistry-preview",
+      stats: {
+        duration: "40 hours",
+        enrolled: "600+",
+        videos: "50+",
+        support: "3 months",
+      },
+      benefits: [
+        {
+          title: "Complete Learning System",
+          description: "Access to comprehensive video lectures and study materials",
+          icon: "/icons/learning.svg",
+        },
+        {
+          title: "Practical Training",
+          description: "Hands-on practice with real case studies and examples",
+          icon: "/icons/practice.svg",
+        },
+        {
+          title: "Professional Certification",
+          description: "Earn a certificate upon course completion",
+          icon: "/icons/certificate.svg",
+        }
+      ],
+      curriculum: [
+        {
+          title: "Course Materials",
+          content: [
+            "Recorded Videos: Easy-to-follow videos to learn at your own pace",
+            "PPTs/PDFs: Visual slides and materials for better understanding",
+            "Quiz/Assignment: Test your knowledge and practice",
+            "Certificate: Receive a certificate upon completion"
+          ]
+        }
+      ],
+      mentor: {
+        name: "Acharya Vedashvapati",
+        image: "/mentors/vedashvapati.jpg",
+        description: "Master palmist with expertise in karmic readings",
+        credentials: "Certified palm reader and karmic analyst"
+      }
+    },
+]
 
 export const getCoursesByTag = (tag: string) => {
   return CourseList.filter((course) => course.tag === tag);

@@ -4,6 +4,8 @@ import Layout from "@/components/common/layout";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
+import { useParams } from "next/navigation";
+import servicesDetail from "@/data/services";
 
 const EXCHANGE_RATE = 0.012; // 1 INR = 0.012 USD (example rate)
 
@@ -35,8 +37,69 @@ function PriceDisplay({ priceINR }: { priceINR: number }) {
   );
 }
 
+const faqs = [
+  {
+    question: "What is included in the service?",
+    answer:
+      "Each service includes detailed analysis, personalized insights, and tailored remedies to address your specific concerns or objectives.",
+  },
+  {
+    question: "How do I book a consultation?",
+    answer:
+      "You can book a consultation by clicking on the 'Book a Service' button and selecting a time slot that works best for you.",
+  },
+  {
+    question: "Are the consultations confidential?",
+    answer:
+      "Yes, all consultations are 100% confidential. Your privacy and trust are our top priorities.",
+  },
+  {
+    question: "Can I customize the service to my needs?",
+    answer:
+      "Absolutely! Each service is designed to be personalized based on your specific requirements and goals.",
+  },
+  {
+    question: "What payment methods are accepted?",
+    answer:
+      "We accept major payment methods PayPal, and online banking.",
+  },
+  {
+    question: "What if I need to reschedule my appointment?",
+    answer:
+      "You can reschedule your appointment using the confirmation email link or by contacting our support team at least 24 hours in advance.",
+  },
+  {
+    question: "Are the remedies practical and easy to follow?",
+    answer:
+      "Yes, all remedies are designed to be practical, logical, and easy to integrate into your daily life.",
+  },
+  {
+    question: "Do I need prior knowledge of astrology for these services?",
+    answer:
+      "No prior knowledge is required. Our experts will guide you through everything you need to know during the session.",
+  },
+  {
+    question: "Can I ask additional questions during the consultation?",
+    answer:
+      "Yes, you are encouraged to ask questions during the consultation to get the most out of your session.",
+  },
+  {
+    question: "What if I’m not satisfied with the service?",
+    answer:
+      "Your satisfaction is important to us. If you have concerns, please let us know, and we'll do our best to address them.",
+  },
+];
+
 function ServiceDetail() {
   const priceINR = 5000;
+  const { slug } = useParams(); // Get the slug from the route
+  const service = servicesDetail.find(
+    (item) => item.slug.toLowerCase().replace(/\s+/g, "-") === slug,
+  );
+
+  if (!service) {
+    return <div>Service not found!</div>;
+  }
 
   return (
     <Layout>
@@ -46,11 +109,10 @@ function ServiceDetail() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                Personalized Astrology Consultation
+                {service.title}
               </h1>
               <p className="text-lg text-gray-700 mb-4">
-                Dive deep into your life's mysteries with a detailed astrology
-                consultation tailored just for you.
+                {service.description}
               </p>
               <p className="text-2xl font-bold text-blue-900 mb-6">
                 Price: <span className="text-green-600">INR 5000</span> / $60
@@ -75,69 +137,71 @@ function ServiceDetail() {
           </div>
 
           {/* Benefits Section */}
-          <section className="mt-12 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg p-8">
-            <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
-              Why Choose This Service
-            </h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full text-lg font-bold">
-                  🔮
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-blue-900 mb-1">
-                    Comprehensive Birth Chart Analysis
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Gain in-depth insights into your birth chart to uncover the
-                    secrets of your personality and future.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full text-lg font-bold">
-                  🌟
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-blue-900 mb-1">
-                    Predictive Insights
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Understand upcoming opportunities and challenges in your
-                    life journey.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full text-lg font-bold">
-                  🛠️
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-blue-900 mb-1">
-                    Personalized Remedies
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Receive tailored solutions and remedies to enhance your
-                    well-being and overcome obstacles.
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                <div className="flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full text-lg font-bold">
-                  📅
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-blue-900 mb-1">
-                    Flexible Booking Slots
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Choose a time that works best for you with our easy
-                    scheduling options.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+          {service.benefits && (
+            <section className="mt-12 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg p-8">
+              <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
+                Benefits
+              </h2>
+              <ul className="list-disc ml-8 space-y-2">
+                {service.benefits.map((benefit, index) => (
+                  <li key={index} className="text-gray-700">
+                    {benefit}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {service.facts && (
+            <section className="mt-12">
+              <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
+                Facts About {service.title}
+              </h2>
+              <ul className="list-disc ml-8 space-y-2">
+                {service.facts.map((fact, index) => (
+                  <li key={index} className="text-gray-700">
+                    {fact}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {service.features && (
+            <section className="mt-12">
+              <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
+                Key Features
+              </h2>
+              <ul className="list-disc ml-8 space-y-2">
+                {service.features.map((feature, index) => (
+                  <li key={index} className="text-gray-700">
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {service.consultationDetails && (
+            <section className="mt-12">
+              <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
+                Consultation Details
+              </h2>
+              <ul className="list-disc ml-8 space-y-2">
+                {service.consultationDetails.map((detail, index) => (
+                  <li key={index} className="text-gray-700">
+                    {detail}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {service.additionalInfo && (
+            <p className="text-sm text-gray-600 mt-4">
+              {service.additionalInfo}
+            </p>
+          )}
 
           {/* FAQ Section */}
           <section className="mt-12">
@@ -145,24 +209,20 @@ function ServiceDetail() {
               Frequently Asked Questions
             </h2>
             <div className="space-y-4">
-              <div className="bg-gray-50 p-4 rounded-lg shadow-md">
-                <h3 className="font-semibold text-blue-900">
-                  What is included?
-                </h3>
-                <p className="text-gray-600">
-                  The consultation includes detailed analysis, predictive
-                  insights, and actionable remedies.
-                </p>
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg shadow-md">
-                <h3 className="font-semibold text-blue-900">
-                  How do I book a consultation?
-                </h3>
-                <p className="text-gray-600">
-                  Click on the "Book a Service" button to schedule your
-                  appointment via Calendly.
-                </p>
-              </div>
+              {faqs &&
+                faqs.map((faq, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="bg-gray-50 p-4 rounded-lg shadow-md"
+                    >
+                      <h3 className="font-semibold text-blue-900">
+                        {faq.question}
+                      </h3>
+                      <p className="text-gray-600">{faq.answer}</p>
+                    </div>
+                  );
+                })}
             </div>
           </section>
 

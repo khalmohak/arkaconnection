@@ -15,6 +15,7 @@ import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { db, firebaseApp } from "@/config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useParams } from "next/navigation";
+import { CourseDetailData } from "@/data/courses";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
@@ -27,7 +28,7 @@ const CourseDetail = () => {
   });
 
   // Mock data - In real app, fetch this based on courseId
-  const courseData = {
+  const courseData1 = {
     title: "Advanced Spiritual Healing & Meditation",
     price: 200,
     discountedPrice: 150,
@@ -155,6 +156,12 @@ const CourseDetail = () => {
       values: `Driven by excellence, authenticity, and spiritual growth, Maharishi Kapi upholds the values of quality education, community building, and Vedic-centered learning while fostering personal transformation through the integration of ancient wisdom with modern practices. The institution values intellectual curiosity, traditional excellence, and practical application, ensuring that Vedic knowledge remains relevant and accessible in contemporary times, all while maintaining the highest standards of quality in knowledge transfer and spiritual development.`,
     },
   };
+
+  const courseData = CourseDetailData.find((item) => item.slug === courseId);
+
+  if (!courseData) {
+    return <div>Course not found!</div>;
+  }
 
   const handleEnrollSubmit = async (e) => {
     e.preventDefault();
@@ -310,39 +317,41 @@ const CourseDetail = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="container mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-center mb-12 text-purple-900">
-          What Our Students Say
-        </h2>
-        <div className="grid md:grid-cols-3 gap-6">
-          {courseData.testimonials.map((testimonial, index) => (
-            <div key={index} className="p-6 rounded-xl bg-white shadow-lg">
-              <div className="flex items-center space-x-4 mb-4">
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className="w-12 h-12 rounded-full"
-                />
-                <div>
-                  <h4 className="font-semibold text-purple-900">
-                    {testimonial.name}
-                  </h4>
-                  <div className="flex">
-                    {[...Array(testimonial.rating)].map((_, i) => (
+      {courseData?.testimonials && (
+        <section className="container mx-auto px-4 py-12">
+          <h2 className="text-3xl font-bold text-center mb-12 text-purple-900">
+            What Our Students Say
+          </h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {courseData.testimonials.map((testimonial, index) => (
+              <div key={index} className="p-6 rounded-xl bg-white shadow-lg">
+                <div className="flex items-center space-x-4 mb-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-purple-900">
+                      {testimonial.name}
+                    </h4>
+                    <div className="flex">
+                      {/* {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
                         size={16}
                         className="text-yellow-400 fill-current"
                       />
-                    ))}
+                    ))} */}
+                    </div>
                   </div>
                 </div>
+                <p className="text-gray-600">{testimonial.review}</p>
               </div>
-              <p className="text-gray-600">{testimonial.review}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* Floating Enroll Button */}
       <div className="fixed bottom-0 md:bottom-8 left-0 md:left-auto right-0 md:right-8 p-4 bg-white md:bg-transparent">
@@ -386,27 +395,29 @@ const CourseDetail = () => {
       </section>
 
       {/* Who Should Enroll Section */}
-      <section className="container mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold text-center mb-12 text-purple-900">
-          Who Should Enroll?
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {courseData.whoShouldEnroll.map((item, index) => (
-            <div
-              key={index}
-              className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-lg"
-            >
-              <img src={item.image} alt="" className="w-20 h-20 rounded-lg" />
-              <div>
-                <h3 className="text-xl font-semibold text-purple-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600">{item.description}</p>
+      {courseData.whoShouldEnroll && (
+        <section className="container mx-auto px-4 py-12">
+          <h2 className="text-3xl font-bold text-center mb-12 text-purple-900">
+            Who Should Enroll?
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {courseData.whoShouldEnroll.map((item, index) => (
+              <div
+                key={index}
+                className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-lg"
+              >
+                <img src={item.image} alt="" className="w-20 h-20 rounded-lg" />
+                <div>
+                  <h3 className="text-xl font-semibold text-purple-900 mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-gray-600">{item.description}</p>
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </section>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* FAQ Section */}
       <section className="container mx-auto px-4 py-12 bg-purple-50">
@@ -444,7 +455,7 @@ const CourseDetail = () => {
       </section>
 
       {/* About Company Section */}
-      <section className="container mx-auto px-4 py-12">
+     {courseData.companyInfo && <section className="container mx-auto px-4 py-12">
         <h2 className="text-3xl font-bold text-center mb-12 text-purple-900">
           About {courseData.companyInfo.name}
         </h2>
@@ -454,7 +465,7 @@ const CourseDetail = () => {
           </p>
           <p className="text-gray-600">{courseData.companyInfo.values}</p>
         </div>
-      </section>
+     </section>}
 
       {/* Contact Form Section */}
       <section className="container mx-auto px-4 py-12 bg-purple-50">

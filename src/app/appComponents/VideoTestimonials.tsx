@@ -7,9 +7,8 @@ import React from "react";
 // }
 
 const videoUrls = [
-  "https://youtu.be/ADl3RhKlMhg?si=fdzlLK-4ZH99_fov",
-  "https://www.youtube.com/shorts/DLLKk2RzTl0",
-  "https://www.youtube.com/watch?v=D8bFJY8UfZ0&pp=ygUdYXN0cm9sb2d5IGNsaWVudCB0ZXN0aW1vbmlhbHM%3D",
+  "https://youtube.com/shorts/zQUSUZ9fPgo?si=dYEy6kreu-ohljlS",
+  "https://youtube.com/shorts/G06KlmaMvYc?si=MP0pbYInRIaShiH9"
 ];
 
 const VideoTestimonials = ({showTitle=true}) => {
