@@ -2,40 +2,11 @@
 import React, { useState } from "react";
 import Layout from "@/components/common/layout";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
+import { Star, Clock, Calendar, ArrowRight, Sparkles, Book, CheckCircle, HelpCircle } from "lucide-react";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useParams } from "next/navigation";
 import servicesDetail from "@/data/services";
-
-const EXCHANGE_RATE = 0.012; // 1 INR = 0.012 USD (example rate)
-
-function PriceDisplay({ priceINR }: { priceINR: number }) {
-  const [currency, setCurrency] = useState<"INR" | "USD">("INR");
-
-  const toggleCurrency = () => {
-    setCurrency((prev) => (prev === "INR" ? "USD" : "INR"));
-  };
-
-  const displayPrice = currency === "INR" ? priceINR : priceINR * EXCHANGE_RATE;
-  const formattedPrice = displayPrice.toFixed(2);
-
-  return (
-    <Card className="w-full max-w-sm mx-auto mt-6 shadow-lg">
-      <CardContent className="flex items-center justify-between p-4">
-        <div className="text-2xl font-bold">
-          {formattedPrice} {currency}
-        </div>
-        <Button
-          onClick={toggleCurrency}
-          variant="outline"
-          className="border-2 border-gray-300"
-        >
-          Switch to {currency === "INR" ? "USD" : "INR"}
-        </Button>
-      </CardContent>
-    </Card>
-  );
-}
 
 const faqs = [
   {
@@ -90,181 +61,260 @@ const faqs = [
   },
 ];
 
+
+const EXCHANGE_RATE = 0.012;
+
+function PriceDisplay({ priceINR }: { priceINR: number }) {
+  const [currency, setCurrency] = useState<"INR" | "USD">("INR");
+
+  const toggleCurrency = () => {
+    setCurrency((prev) => (prev === "INR" ? "USD" : "INR"));
+  };
+
+  const displayPrice = currency === "INR" ? priceINR : priceINR * EXCHANGE_RATE;
+  const formattedPrice = displayPrice.toFixed(2);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white rounded-xl shadow-lg p-6"
+    >
+      <div className="flex items-center justify-between gap-4">
+        <div className="text-3xl font-bold text-[#344e41]">
+          {currency === "INR" ? "₹" : "$"}{formattedPrice}
+        </div>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={toggleCurrency}
+          className="px-4 py-2 border-2 border-[#B69D74] text-[#B69D74] rounded-full 
+                   hover:bg-[#B69D74] hover:text-white transition-colors duration-300"
+        >
+          Switch to {currency === "INR" ? "USD" : "INR"}
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+}
+
 function ServiceDetail() {
-  const priceINR = 5000;
-  const { slug } = useParams(); // Get the slug from the route
+  const { slug } = useParams();
   const service = servicesDetail.find(
-    (item) => item.slug.toLowerCase().replace(/\s+/g, "-") === slug,
+    (item) => item.slug.toLowerCase().replace(/\s+/g, "-") === slug
   );
 
   if (!service) {
-    return <div>Service not found!</div>;
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <Book className="w-16 h-16 text-[#B69D74] mx-auto mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900">Service Not Found</h2>
+          <p className="text-gray-600">The service you're looking for doesn't exist.</p>
+        </div>
+      </div>
+    );
   }
 
   return (
     <Layout>
-      <section className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-        <div className="container mx-auto px-4 py-12 md:py-20">
-          {/* Header Section */}
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-blue-900 mb-6">
-                {service.title}
-              </h1>
-              <p className="text-lg text-gray-700 mb-4">
-                {service.description}
-              </p>
-              <p className="text-2xl font-bold text-blue-900 mb-6">
-                Price: <span className="text-green-600">INR 5000</span> / $60
-              </p>
-              <Button
-                onClick={() =>
-                  window.open(
-                    "https://calendly.com/your-calendly-link",
-                    "_blank",
-                  )
-                }
-                className="bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors shadow-md"
-              >
-                Book a Service
-              </Button>
-            </div>
-            <img
-              src="https://arkaconnection.in/wp-content/uploads/2024/01/90f37e_732dc7d9eb8344a4b204b9493d728043mv2.webp"
-              alt="Service"
-              className="rounded-lg shadow-lg"
-            />
+      <div className="min-h-screen bg-[#FAF9F6] mt-10">
+        {/* Hero Section */}
+        <section className="relative bg-[#344e41] text-white py-20">
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-0 left-0 w-64 h-64 bg-[#B69D74]/10 rounded-full filter blur-3xl"></div>
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#B69D74]/10 rounded-full filter blur-3xl"></div>
           </div>
 
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="flex items-center gap-2 mb-6">
+                  <Sparkles className="w-5 h-5 text-[#B69D74]" />
+                  <span className="text-[#B69D74] font-medium">Sacred Service</span>
+                </div>
+                
+                <h1 className="text-4xl sm:text-5xl font-bold mb-6">{service.title}</h1>
+                
+                <p className="text-lg text-gray-200 mb-8">{service.description}</p>
+                
+                <div className="flex items-center gap-6 mb-8">
+                  <div className="flex items-center">
+                    <Star className="w-5 h-5 text-[#B69D74] fill-current" />
+                    <span className="ml-2">4.9 (120+ reviews)</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Clock className="w-5 h-5 text-[#B69D74]" />
+                    <span className="ml-2">60 minutes</span>
+                  </div>
+                </div>
+
+                <PriceDisplay priceINR={5000} />
+
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="mt-8"
+                >
+                  <Button
+                    onClick={() => window.open("https://calendly.com/your-calendly-link", "_blank")}
+                    className="px-8 py-4 bg-[#B69D74] text-white rounded-full font-semibold 
+                             hover:bg-[#a38a64] transition-all duration-300 shadow-lg"
+                  >
+                    <Calendar className="w-5 h-5 mr-2" />
+                    Book Consultation
+                  </Button>
+                </motion.div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="relative aspect-square rounded-xl overflow-hidden shadow-2xl"
+              >
+                <img
+                  src="https://arkaconnection.in/wp-content/uploads/2024/01/90f37e_732dc7d9eb8344a4b204b9493d728043mv2.webp"
+                  alt="Service"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           {/* Benefits Section */}
           {service.benefits && (
-            <section className="mt-12 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow-lg p-8">
-              <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
-                Benefits
+            <motion.section
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-16"
+            >
+              <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+                Sacred Benefits
               </h2>
-              <ul className="list-disc ml-8 space-y-2">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {service.benefits.map((benefit, index) => (
-                  <li key={index} className="text-gray-700">
-                    {benefit}
-                  </li>
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300"
+                  >
+                    <CheckCircle className="w-8 h-8 text-[#B69D74] mb-4" />
+                    <p className="text-gray-700">{benefit}</p>
+                  </motion.div>
                 ))}
-              </ul>
-            </section>
+              </div>
+            </motion.section>
           )}
 
-          {service.facts && (
-            <section className="mt-12">
-              <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
-                Facts About {service.title}
-              </h2>
-              <ul className="list-disc ml-8 space-y-2">
-                {service.facts.map((fact, index) => (
-                  <li key={index} className="text-gray-700">
-                    {fact}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
+          {/* Features and Facts Combined Section */}
+          {(service.features || service.facts) && (
+            <div className="grid md:grid-cols-2 gap-12 mb-16">
+              {service.features && (
+                <motion.section
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="bg-white p-8 rounded-xl shadow-lg"
+                >
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Key Features</h2>
+                  <div className="space-y-4">
+                    {service.features.map((feature, index) => (
+                      <div key={index} className="flex items-start gap-4">
+                        <div className="w-6 h-6 rounded-full bg-[#B69D74]/10 flex items-center justify-center">
+                          <CheckCircle className="w-4 h-4 text-[#B69D74]" />
+                        </div>
+                        <p className="text-gray-700">{feature}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
 
-          {service.features && (
-            <section className="mt-12">
-              <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
-                Key Features
-              </h2>
-              <ul className="list-disc ml-8 space-y-2">
-                {service.features.map((feature, index) => (
-                  <li key={index} className="text-gray-700">
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {service.consultationDetails && (
-            <section className="mt-12">
-              <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
-                Consultation Details
-              </h2>
-              <ul className="list-disc ml-8 space-y-2">
-                {service.consultationDetails.map((detail, index) => (
-                  <li key={index} className="text-gray-700">
-                    {detail}
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )}
-
-          {service.additionalInfo && (
-            <p className="text-sm text-gray-600 mt-4">
-              {service.additionalInfo}
-            </p>
+              {service.facts && (
+                <motion.section
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="bg-white p-8 rounded-xl shadow-lg"
+                >
+                  <h2 className="text-2xl font-bold text-gray-900 mb-6">Sacred Facts</h2>
+                  <div className="space-y-4">
+                    {service.facts.map((fact, index) => (
+                      <div key={index} className="flex items-start gap-4">
+                        <div className="w-6 h-6 rounded-full bg-[#B69D74]/10 flex items-center justify-center">
+                          <Sparkles className="w-4 h-4 text-[#B69D74]" />
+                        </div>
+                        <p className="text-gray-700">{fact}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.section>
+              )}
+            </div>
           )}
 
           {/* FAQ Section */}
-          <section className="mt-12">
-            <h2 className="text-3xl font-bold text-center text-blue-900 mb-8">
-              Frequently Asked Questions
+          <section className="mb-16">
+            <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
+              Common Questions
             </h2>
-            <div className="space-y-4">
-              {faqs &&
-                faqs.map((faq, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="bg-gray-50 p-4 rounded-lg shadow-md"
-                    >
-                      <h3 className="font-semibold text-blue-900">
-                        {faq.question}
-                      </h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              {faqs.map((faq, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <HelpCircle className="w-6 h-6 text-[#B69D74] shrink-0" />
+                    <div>
+                      <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
                       <p className="text-gray-600">{faq.answer}</p>
                     </div>
-                  );
-                })}
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </section>
+        </div>
 
-          <div className="fixed bottom-0 left-0 right-0 bg-white p-4 shadow-lg md:flex md:justify-between md:items-center">
-            <div className="text-lg font-bold text-blue-900">
-              Price: <span className="text-green-600">INR 5000</span> / $60
+        {/* Floating Booking Bar */}
+        <motion.div
+          initial={{ y: 100 }}
+          animate={{ y: 0 }}
+          className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg border-t border-gray-200"
+        >
+          <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="text-2xl font-bold text-[#344e41]">₹5,000</div>
+              <span className="text-gray-600">/ consultation</span>
             </div>
-            <div className="flex gap-4">
-              <Button
-                onClick={() =>
-                  window.open(
-                    "https://calendly.com/your-calendly-link",
-                    "_blank",
-                  )
-                }
-                className="bg-blue-600 text-white px-6 py-3 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-colors"
+            
+            <div className="flex items-center gap-4">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => window.open("https://calendly.com/your-calendly-link", "_blank")}
+                className="px-6 py-3 bg-[#344e41] text-white rounded-full font-semibold 
+                         hover:bg-[#2a3b31] transition-all duration-300 flex items-center gap-2"
               >
-                Schedule Appointment
-              </Button>
-              {/* <PayPalScriptProvider options={{ "client-id": "your-paypal-client-id" }}>
-                <PayPalButtons
-                  createOrder={(data, actions) => {
-                    return actions.order.create({
-                      purchase_units: [
-                        {
-                          amount: { value: "60.00" }, // USD price
-                        },
-                      ],
-                    });
-                  }}
-                  onApprove={(data, actions) => {
-                    return actions.order.capture().then((details) => {
-                      alert(`Payment successful! Thank you, ${details.payer.name.given_name}.`);
-                    });
-                  }}
-                  style={{ layout: "horizontal" }}
-                />
-              </PayPalScriptProvider> */}
+                <Calendar className="w-5 h-5" />
+                Schedule Now
+              </motion.button>
             </div>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </div>
     </Layout>
   );
 }

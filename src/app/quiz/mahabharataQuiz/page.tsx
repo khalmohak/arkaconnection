@@ -1,124 +1,164 @@
-'use client'
+'use client';
 
-import Question from '@/app/appComponents/Question'
-import React, { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation';
+import React, { useState } from 'react';
+import Footer from '@/app/appComponents/Footer';
+import Navbar from '@/app/appComponents/Navbar';
 
 function Page() {
+  const router = useRouter();
 
-    const quizzes = [
-      [
-        {
-          "question": "Who is considered the author of the *Mahabharata*?",
-          "options": ["Vyasa", "Valmiki", "Tulsidas", "Kalidasa"],
-          "answer": 0
-        },
-        {
-          "question": "Who was the eldest of the Pandavas?",
-          "options": ["Yudhishthira", "Bhima", "Arjuna", "Nakula"],
-          "answer": 0
-        },
-        {
-          "question": "Which warrior from the Kaurava side was invincible until his death?",
-          "options": ["Duryodhana", "Bhishma", "Karna", "Dushasana"],
-          "answer": 1
-        },
-        {
-          "question": "What is the name of the sacred conversation between Arjuna and Krishna?",
-          "options": ["Vishnu Sahasranama", "Bhagavad Gita", "Ramayana", "Mahabharata"],
-          "answer": 1
-        },
-        {
-          "question": "Who was the main antagonist of the *Mahabharata* war?",
-          "options": ["Karna", "Duryodhana", "Bhishma", "Shakuni"],
-          "answer": 1
-        }
-      ],
+  const quizzes = [
+    [
+      {
+        question: 'Who is considered the author of the *Mahabharata*?',
+        options: ['Vyasa', 'Valmiki', 'Tulsidas', 'Kalidasa'],
+        answer: 0,
+      },
+      {
+        question: 'Who was the eldest of the Pandavas?',
+        options: ['Yudhishthira', 'Bhima', 'Arjuna', 'Nakula'],
+        answer: 0,
+      },
+      {
+        question: 'Which warrior from the Kaurava side was invincible until his death?',
+        options: ['Duryodhana', 'Bhishma', 'Karna', 'Dushasana'],
+        answer: 1,
+      },
+    ],
+  ];
 
-      [
-        {
-          "question": "Which character is known as the great archer of the Pandavas?",
-          "options": ["Yudhishthira", "Bhima", "Arjuna", "Nakula"],
-          "answer": 2
-        },
-        {
-          "question": "Who was the mother of the Kauravas?",
-          "options": ["Kunti", "Gandhari", "Satyavati", "Subhadra"],
-          "answer": 1
-        },
-        {
-          "question": "Who was the teacher of both the Pandavas and Kauravas in the *Mahabharata*?",
-          "options": ["Drona", "Kripacharya", "Bhishma", "Narada"],
-          "answer": 0
-        },
-        {
-          "question": "Who is known for having caused the downfall of Draupadi during the game of dice?",
-          "options": ["Duryodhana", "Shakuni", "Karna", "Bhishma"],
-          "answer": 1
-        },
-        {
-          "question": "Which epic battle is the central event of the *Mahabharata*?",
-          "options": ["Kurukshetra War", "Ramayana War", "Mahapadma War", "War of the Devas"],
-          "answer": 0
-        }
-      ],
+  const [quizIndex, setQuizIndex] = useState(0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const quiz = quizzes[quizIndex];
 
-      [
-        {
-          "question": "Who was the eldest son of the Kauravas?",
-          "options": ["Dushasana", "Duryodhana", "Vikarna", "Dhrishtadyumna"],
-          "answer": 1
-        },
-        {
-          "question": "Which warrior was known as the *Karna* of the Pandavas?",
-          "options": ["Bhima", "Draupadi", "Abhimanyu", "Arjuna"],
-          "answer": 2
-        },
-        {
-          "question": "Who was the wife of Arjuna and mother of his son Abhimanyu?",
-          "options": ["Draupadi", "Subhadra", "Ulupi", "Chitrangada"],
-          "answer": 1
-        },
-        {
-          "question": "Which character had a boon that made him invincible against all warriors except Arjuna?",
-          "options": ["Karna", "Bhishma", "Duryodhana", "Shakuni"],
-          "answer": 0
-        },
-        {
-          "question": "Who was the mother of the Pandavas?",
-          "options": ["Gandhari", "Kunti", "Satyavati", "Subhadra"],
-          "answer": 1
-        }
-      ]
-
-    ]
-    
-    const [quizNumber, setQuizNumber] = useState<number>(1);
-    // const [currentQuestion, setCurrentQuestion] = useState<number>(1);
-
-    useEffect( () => {
-        const min: number = 1;
-        const max: number = 100; 
-        const randomNumber: number = Math.floor(Math.random() * (max - min + 1)) + min;
-        setQuizNumber(randomNumber);
-    }, [] )
+  const handleNext = () => {
+    if (currentQuestion < quiz.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
+      setProgress(((currentQuestion + 1) / quiz.length) * 100);
+    } else {
+      router.push('/results');
+    }
+  };
 
   return (
-    <div className="
-    min-h-screen w-full flex flex-col gap-y-20 justify-center items-center bg-white
-    sm:min-h-screen sm:w-full sm:flex sm:flex-col sm:gap-y-20 sm:justify-center sm:items-center 
-    md:min-h-screen md:w-full md:flex md:flex-col md:gap-y-20 md:justify-center md:items-center 
-    lg:min-h-screen lg:w-full lg:flex lg:flex-col lg:gap-y-20 lg:justify-center lg:items-center 
-    xl:min-h-screen xl:w-full xl:flex xl:flex-col xl:gap-y-20 xl:justify-center xl:items-center 
-    2xl:min-h-screen 2xl:w-full 2xl:flex 2xl:flex-col 2xl:gap-y-20 2xl:justify-center 2xl:items-center ">
-        {
-        quizNumber === 1
-            ? ( <> <Question quiz={quizzes[0]} /> </> ) // <ComponentForQuiz1 /> 
-            : quizNumber === 2
-            ? ( <> <Question quiz={quizzes[1]} /> </> )  // <ComponentForQuiz2 />
-            : ( <> <Question quiz={quizzes[2]} /> </> )  // <ComponentForOtherQuiz />  
-        }
+    <div className="min-h-screen bg-[#FAF9F6] flex flex-col">
+      <Navbar />
+
+      <div className="flex-grow flex flex-col justify-center items-center py-12 px-4">
+        <h1 className="text-4xl sm:text-5xl font-bold text-[#344e41] mb-8 text-center">
+          Test Your Knowledge
+        </h1>
+
+        <ProgressBar progress={progress} />
+
+        <div className="w-full max-w-2xl bg-white shadow-md rounded-lg p-6 mt-6">
+          <Question
+            question={quiz[currentQuestion].question}
+            options={quiz[currentQuestion].options}
+            answer={quiz[currentQuestion].answer}
+          />
+          <button
+            onClick={handleNext}
+            className="mt-6 w-full py-3 bg-[#344e41] text-white rounded-lg font-semibold hover:bg-[#2a3b31] transition"
+          >
+            Next
+          </button>
+        </div>
+      </div>
+
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default Page
+export default Page;
+
+// ProgressBar Component
+import { motion } from 'framer-motion';
+
+function ProgressBar({ progress }) {
+  return (
+    <div className="w-full max-w-2xl bg-gray-200 rounded-full h-6 overflow-hidden shadow-lg">
+      <motion.div
+        className="bg-[#344e41] h-full"
+        initial={{ width: 0 }}
+        animate={{ width: `${progress}%` }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      ></motion.div>
+    </div>
+  );
+}
+
+
+function Question({ question, options, answer, image }) {
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [isAnswered, setIsAnswered] = useState(false);
+
+  const handleOptionClick = (index) => {
+    if (!isAnswered) {
+      setSelectedOption(index);
+      setIsAnswered(true);
+    }
+  };
+
+  return (
+    <motion.div
+      className="p-6 bg-white shadow-xl rounded-lg"
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      {image && (
+        <motion.img
+          src={image}
+          alt="question visual"
+          className="w-full h-48 object-cover rounded-lg mb-4"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        />
+      )}
+      <h2 className="text-2xl font-bold text-[#344e41] mb-4">{question}</h2>
+      <ul className="space-y-4">
+        {options.map((option, index) => (
+          <motion.li
+            key={index}
+            className={`p-4 border rounded-lg cursor-pointer text-lg transition-all duration-300 transform hover:scale-105 ${
+              isAnswered
+                ? index === answer
+                  ? 'bg-green-100 border-green-500'
+                  : index === selectedOption
+                  ? 'bg-red-100 border-red-500'
+                  : 'bg-gray-100'
+                : 'hover:bg-gray-50'
+            }`}
+            onClick={() => handleOptionClick(index)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {option}
+          </motion.li>
+        ))}
+      </ul>
+      {isAnswered && (
+        <motion.div
+          className="mt-6 text-lg font-semibold"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {selectedOption === answer ? (
+            <div className="text-green-600">Correct! Great job!</div>
+          ) : (
+            <div className="text-red-600">
+              Incorrect. The correct answer is: <strong>{options[answer]}</strong>
+            </div>
+          )}
+        </motion.div>
+      )}
+    </motion.div>
+  );
+}
+

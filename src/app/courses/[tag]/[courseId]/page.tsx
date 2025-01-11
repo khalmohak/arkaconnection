@@ -1,4 +1,135 @@
 "use client";
+
+const courseData1 = {
+  title: "Advanced Spiritual Healing & Meditation",
+  price: 200,
+  discountedPrice: 150,
+  description:
+    "Get an insight into everything the universe holds for your future.Enroll today in the best astrology course online and kick-start learning with masterfully-crafted guidance from world-renowned astrologer, Mr. Alok Khandelwal.",
+  videoUrl: "https://youtube.com/embed/example",
+  stats: {
+    duration: "20 hours",
+    enrolled: "100+",
+    videos: "10+",
+    support: "Lifetime",
+  },
+  benefits: [
+    {
+      title: "Live Classes & Recorded Videos",
+      description:
+        "Dive deep into spirituality with dynamic live sessions taught by renowned experts",
+      icon: "/courses/static/live-classes.jpeg",
+    },
+    {
+      title: "Downloadable PDFs",
+      description:
+        "Get comprehensive study material with 30+ downloadable PDFs",
+      icon: "/courses/static/docs.jpeg",
+    },
+    {
+      title: "Doubt Sessions",
+      description: "25 dedicated doubt sessions with experienced mentors",
+      icon: "/courses/static/doubt.jpeg",
+    },
+  ],
+  curriculum: [
+    {
+      title: "Foundation of Spiritual Healing",
+      content:
+        "Learn the basic principles and history of spiritual healing practices",
+    },
+    {
+      title: "Energy Centers & Chakras",
+      content:
+        "Deep dive into the seven major chakras and their significance",
+    },
+  ],
+  mentor: {
+    name: "Acharya Alok Awasthi",
+    image:
+      "https://arkaconnection.in/wp-content/uploads/2023/11/maharishi.webp",
+    description: `Acharya Alok Awasthi is the founder of Maharishi Kapi, an institution focused on Vedic studies and traditional Shastras. He is notable for his unique approach to combining astrology and astronomy with modern corporate applications. Awasthi is distinguished by his innate ability to decode mantras from Vedas and Upanishads, which he has used to reinterpret astrological principles for the corporate world.
+      As an educator and researcher, Awasthi maintains that astrology qualifies as a science, defining it as "a subject that needs probing, investigation and research." He has developed specialized courses that apply astronomical and astrological principles to various corporate designations and departments, aiming to help professionals achieve their goals methodically.`,
+    credentials:
+      "Vedic scholar and expert in decoding Vedic mantras, specializing in applying ancient astronomical and astrological principles to modern corporate development.",
+  },
+  testimonials: [
+    {
+      name: "John Doe",
+      image: "/api/placeholder/50/50",
+      review: "This course transformed my understanding of spiritual healing",
+      rating: 5,
+    },
+  ],
+  videoTestimonials: [
+    {
+      id: 1,
+      thumbnail: "/api/placeholder/300/200",
+      videoUrl: "https://youtube.com/embed/example1",
+      studentName: "Maria Garcia",
+      title: "Changed my perspective on spirituality",
+    },
+    {
+      id: 2,
+      thumbnail: "/api/placeholder/300/200",
+      videoUrl: "https://youtube.com/embed/example2",
+      studentName: "James Wilson",
+      title: "Best investment in my spiritual journey",
+    },
+    // Add more video testimonials...
+  ],
+  whoShouldEnroll: [
+    {
+      image: "/courses/static/meditation.jpeg",
+      title: "Spiritual Seekers",
+      description:
+        "Those who want to deepen their spiritual practice and understanding",
+    },
+    {
+      image: "/courses/static/meditation2.jpeg",
+      title: "Meditation Enthusiasts",
+      description:
+        "People looking to enhance their meditation practice with advanced techniques",
+    },
+    {
+      image: "/courses/static/healing.jpeg",
+      title: "Healing Practitioners",
+      description:
+        "Professional healers wanting to expand their knowledge and skills",
+    },
+    {
+      image: "/courses/static/growth.jpeg",
+      title: "Personal Growth Advocates",
+      description:
+        "Individuals committed to their personal and spiritual development",
+    },
+  ],
+  faqs: [
+    {
+      question: "Do I need prior experience in spirituality?",
+      answer:
+        "No prior experience is required. This course is designed to accommodate both beginners and advanced practitioners.",
+    },
+    {
+      question: "How long do I have access to the course?",
+      answer:
+        "You get lifetime access to all course materials, including future updates and additions.",
+    },
+    {
+      question: "Are the live sessions recorded?",
+      answer:
+        "Yes, all live sessions are recorded and made available within 24 hours for those who cannot attend.",
+    },
+    // Add more FAQs...
+  ],
+  companyInfo: {
+    name: "Maharishi Kapi",
+    description: `Maharishi Kapi, founded by Acharya Alok Awasthi, is an institution dedicated to bridging ancient Vedic wisdom with modern applications. The institute offers comprehensive education in traditional subjects including Vedas, Upanishads, Astrology, Numerology, Vastu, Meditation, and Ayurveda, while uniquely applying these principles to contemporary corporate settings. Acharya Awasthi, known for his expertise in decoding Vedic mantras, has developed specialized courses that blend astronomical and astrological principles with professional development. The institution's mission extends beyond traditional education, aiming to build a community of Vedic learners while providing practical solutions for personal and professional growth. Through workshops, lectures, and certifications, Maharishi Kapi strives to make ancient wisdom accessible and applicable in today's world, helping individuals achieve success while maintaining spiritual well-being.`,
+    values: `Driven by excellence, authenticity, and spiritual growth, Maharishi Kapi upholds the values of quality education, community building, and Vedic-centered learning while fostering personal transformation through the integration of ancient wisdom with modern practices. The institution values intellectual curiosity, traditional excellence, and practical application, ensuring that Vedic knowledge remains relevant and accessible in contemporary times, all while maintaining the highest standards of quality in knowledge transfer and spiritual development.`,
+  },
+};
+
+
 import React, { useState } from "react";
 import {
   Play,

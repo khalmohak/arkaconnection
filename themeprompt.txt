@@ -1,0 +1,115 @@
+{
+  "theme": {
+    "name": "Mystical Wisdom",
+    "version": "1.0",
+    "description": "An elegant, mystical theme combining ancient wisdom with modern design",
+    
+    "colors": {
+      "primary": {
+        "main": "#344e41",
+        "light": "#3a5847",
+        "dark": "#2a3b31"
+      },
+      "secondary": {
+        "main": "#B69D74",
+        "light": "#c4b08c",
+        "dark": "#a38a64"
+      },
+      "background": {
+        "main": "#FAF9F6",
+        "light": "#FFFFFF",
+        "dark": "#F5EFE6"
+      },
+      "text": {
+        "primary": "#1F2937",
+        "secondary": "#4B5563",
+        "light": "#9CA3AF"
+      }
+    },
+
+    "typography": {
+      "headings": {
+        "h1": "text-4xl sm:text-5xl md:text-6xl font-bold",
+        "h2": "text-3xl sm:text-4xl font-bold",
+        "h3": "text-2xl font-bold",
+        "h4": "text-xl font-semibold"
+      },
+      "body": {
+        "regular": "text-base text-gray-600",
+        "small": "text-sm text-gray-500"
+      }
+    },
+
+    "components": {
+      "buttons": {
+        "primary": {
+          "base": "px-6 py-3 rounded-full font-semibold transition-all duration-300",
+          "default": "bg-[#344e41] text-white hover:bg-[#2a3b31]",
+          "secondary": "bg-[#B69D74] text-white hover:bg-[#a38a64]",
+          "outline": "border-2 border-[#B69D74] text-[#B69D74] hover:bg-[#B69D74] hover:text-white"
+        }
+      },
+      "cards": {
+        "base": "bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300",
+        "hover": "transform hover:scale-105 transition-transform duration-300",
+        "image": "aspect-video object-cover transform transition-transform duration-300 group-hover:scale-110"
+      },
+      "inputs": {
+        "base": "w-full px-4 py-3 rounded-full border focus:outline-none focus:ring-2 focus:ring-[#B69D74] focus:border-transparent",
+        "search": "pl-12 pr-4 py-3 rounded-full bg-white/10 border border-white/20 text-white placeholder-gray-300"
+      }
+    },
+
+    "layouts": {
+      "sections": {
+        "hero": {
+          "base": "relative bg-[#344e41] text-white py-20",
+          "overlay": "absolute inset-0 overflow-hidden",
+          "content": "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        },
+        "container": "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12",
+        "grid": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+      }
+    },
+
+    "animations": {
+      "entrance": {
+        "fadeUp": {
+          "initial": { "opacity": 0, "y": 20 },
+          "animate": { "opacity": 1, "y": 0 },
+          "transition": { "duration": 0.6 }
+        },
+        "stagger": {
+          "children": { "delay": 0.1 }
+        }
+      },
+      "hover": {
+        "scale": {
+          "whileHover": { "scale": 1.05 },
+          "whileTap": { "scale": 0.95 }
+        }
+      }
+    },
+
+    "decorativeElements": {
+      "orbs": {
+        "base": "absolute w-64 h-64 rounded-full filter blur-3xl",
+        "colors": "bg-[#B69D74]/10"
+      },
+      "dividers": {
+        "base": "w-24 h-1 bg-[#B69D74]/30 rounded-full",
+        "withSymbol": "flex items-center justify-center gap-4 text-[#B69D74]"
+      }
+    }
+  },
+
+  "usage": {
+    "instructions": "Use this theme specification to maintain consistent styling across components. All colors, typography, and components should follow these guidelines.",
+    "implementation": [
+      "Import and use Framer Motion for animations",
+      "Use Lucide icons for consistency",
+      "Maintain responsive design patterns",
+      "Follow accessibility guidelines"
+    ]
+  }
+}
