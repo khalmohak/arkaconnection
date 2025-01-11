@@ -1,113 +1,185 @@
-import React from 'react'
-import { Button } from '@/components/ui/button'
-import Image from 'next/image'
-// import { useRouter } from 'next/navigation';
+"use client";
+import React from 'react';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
 
 function Hero() {
-
   return (
-    <div className="bg-white my-10 relative h-screen w-full flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img
-          src="./kalachakra.png"
-          alt="Kalachakra background"
-          className="w-full h-full object-contain object-center filter blur"
-        />
-        <div className="absolute inset-0 "></div>
-      </div>
-      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold mb-6 text-black">
-          Connecting Modern Minds with Ancient Wisdom
-        </h1>
-        {/* <p className="text-lg sm:text-xl md:text-2xl text-white mb-8">
-          The spiritual and healing research work and service of the last nine generations of my family are my spiritual roots.
-        </p> */}
-        <Button
-          asChild
-          className="h-14 w-44 bg-black text-[#e6ccb2] font-bold rounded-full text-base hover:bg-gray-900 transition-colors duration-200"
+    <main className="flex-grow">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#FAF9F6] to-[#F5EFE6]">
+        {/* Animated Background Elements */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 1.2 }}
+          animate={{ opacity: 0.1, scale: 1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0"
         >
-          <a href="https://calendly.com/arkaconnection" target="_blank">
-            Chat Now
-          </a>
-        </Button>
-      </div>
-    </div>
-  )
+          <Image
+            src="/kalachakra.png"
+            alt="Background Mandala"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center"
+            className="transform scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#F5EFE6]/50" />
+        </motion.div>
+
+        {/* Animated Decorative Elements */}
+        <motion.div 
+          animate={{ 
+            y: [0, -20, 0],
+            opacity: [0.1, 0.2, 0.1] 
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut" 
+          }}
+          className="absolute top-20 left-20 w-32 h-32 rounded-full bg-[#B69D74]/10 blur-2xl"
+        />
+        <motion.div 
+          animate={{ 
+            y: [0, 20, 0],
+            opacity: [0.1, 0.2, 0.1] 
+          }}
+          transition={{ 
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1 
+          }}
+          className="absolute bottom-20 right-20 w-32 h-32 rounded-full bg-[#B69D74]/10 blur-2xl"
+        />
+
+        {/* Animated Zodiac Symbols */}
+        <div className="absolute inset-0 overflow-hidden opacity-5">
+          {['♈', '♉', '♊', '♋'].map((symbol, index) => (
+            <motion.div
+              key={symbol}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 * index, duration: 0.8 }}
+              className={`absolute text-6xl ${
+                index === 0 ? 'top-20 left-[10%]' :
+                index === 1 ? 'top-40 right-[15%]' :
+                index === 2 ? 'bottom-32 left-[20%]' :
+                'top-60 right-[25%]'
+              }`}
+            >
+              {symbol}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Main Content with Animations */}
+        <div className="relative z-10 text-center px-6 sm:px-8 lg:px-16 max-w-5xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-[#B69D74] font-medium text-lg mb-4 tracking-wide"
+          >
+            Explore Your Destiny
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-gray-900 mb-8 leading-tight"
+          >
+            <span className="block">Connecting Modern Minds</span>
+            <span className="block mt-2">with Ancient Wisdom</span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed"
+          >
+            Discover the rich tapestry of spiritual and healing practices
+            passed down through generations, reimagined for today's seekers
+            of truth and enlightenment.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+          >
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Button
+                asChild
+                className="h-14 w-48 bg-[#B69D74] text-white font-bold rounded-full shadow-lg 
+                          hover:bg-[#A38A64] transition-all duration-300"
+              >
+                <a href="https://calendly.com/arkaconnection" target="_blank">
+                  Begin Your Journey
+                </a>
+              </Button>
+            </motion.div>
+            
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Button
+                asChild
+                variant="outline"
+                className="h-14 w-48 border-2 border-[#B69D74] text-[#B69D74] font-bold 
+                          rounded-full bg-transparent hover:bg-[#B69D74] hover:text-white 
+                          transition-all duration-300"
+              >
+                <a href="#learn-more">
+                  Learn More
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Animated Decorative Divider */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-16 flex items-center justify-center gap-4"
+          >
+            <motion.div
+              animate={{ scaleX: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-12 h-0.5 bg-[#B69D74]/30 rounded"
+            />
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="text-2xl text-[#B69D74]"
+            >
+              ✧
+            </motion.div>
+            <motion.div
+              animate={{ scaleX: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-12 h-0.5 bg-[#B69D74]/30 rounded"
+            />
+          </motion.div>
+        </div>
+
+        {/* Bottom Gradient */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <div className="h-24 bg-gradient-to-t from-[#F5EFE6] to-transparent"></div>
+        </div>
+      </section>
+
+      
+    </main>
+  );
 }
 
-export default Hero
-
-// <div className='
-    // h-full w-full flex flex-col justify-center items-center gap-y-20
-    // sm:h-full sm:w-full sm:flex sm:flex-row sm:justify-between sm:items-center sm:gap-x-10
-    // md:h-full md:w-full md:flex md:justify-between md:items-center md:gap-x-6
-    // lg:h-full lg:w-full lg:flex lg:justify-between lg:items-center lg:gap-x-10
-    // xl:h-full xl:w-full xl:flex xl:justify-between xl:items-center xl:gap-x-10
-    // 2xl:h-full 2xl:w-full my-20 2xl:flex 2xl:justify-between 2xl:items-center 2xl:gap-x-10
-    
-    // bg-white 
-    // '
-    // id='heroDiv'
-    // >
-        
-    //     <div className='
-    //     ml-0 h-[15rem] w-[70%] flex justify-center items-center rounded-xl
-    //     sm:ml-7 sm:h-[20rem] sm:w-[50%] sm:flex sm:justify-center sm:items-center sm:rounded-xl
-    //     md:ml-10 md:h-[25rem] md:w-[60%] md:flex md:justify-center md:items-center md:rounded-xl
-    //     lg:ml-14 lg:h-[30rem] lg:w-[50%] lg:flex lg:justify-center lg:items-center lg:rounded-xl
-    //     xl:ml-20 xl:h-[33rem] xl:w-[50%] xl:flex xl:justify-center xl:items-center xl:rounded-xl
-    //     2xl:ml-20 2xl:h-[38rem] 2xl:w-[50%] 2xl:flex 2xl:justify-center 2xl:items-center 2xl:rounded-xl'
-        
-    //     id='heroImageDiv'
-    //     >
-    //         <img src="https://arkaconnection.in/wp-content/uploads/2023/10/kalachakra-final.png" alt=""  className='h-full w-full' />
-    //     </div>
-        
-    //     <div className=' 
-    //     w-[80%] flex flex-col justify-center items-center gap-y-3
-    //     sm:mr-5 sm:w-[50%] sm:flex sm:flex-col sm:justify-center sm:items-center sm:gap-y-3
-    //     md:w-[40%] md:flex md:flex-col md:justify-center md:items-center md:gap-y-3
-    //     lg:w-[50%] lg:flex lg:flex-col lg:justify-center lg:items-center lg:gap-y-3
-    //     xl:w-[50%] xl:flex xl:flex-col xl:justify-center xl:items-center xl:gap-y-3
-    //     2xl:w-[50%] 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center 2xl:gap-y-3  '>
-
-    //         <div className='
-    //         max-w-xl flex justify-center items-center text-center text-xl font-extrabold
-    //         sm:max-w-xl sm:flex sm:justify-center sm:items-center sm:text-center   sm:text-lg sm:font-extrabold
-    //         md:max-w-xl md:flex md:justify-center md:items-center md:text-center md:text-2xl md:font-extrabold
-    //         lg:max-w-2xl lg:flex lg:justify-center lg:items-center lg:text-center lg:text-3xl lg:font-extrabold
-    //         xl:max-w-2xl xl:flex xl:justify-center xl:items-center xl:text-center xl:text-5xl xl:font-extrabold
-    //         2xl:max-w-2xl 2xl:flex 2xl:justify-center 2xl:items-center 2xl:text-center 2xl:text-5xl 2xl:font-extrabold
-            
-    //         text-black 
-    //         '>
-    //             Connecting Modern Minds with Ancient Wisdom
-    //         </div>
-    //         <div className='
-    //         max-w-xl text-base text-center
-    //         sm:max-w-xl sm:text-xs sm:text-center
-    //         md:max-w-xl md:text-sm md:text-center
-    //         lg:max-w-xl lg:text-base lg:text-center
-    //         xl:max-w-xl xl:text-lg xl:text-center
-    //         2xl:max-w-xl 2xl:text-lg 2xl:text-center 
-            
-    //         text-[#525e71] font-bold'>
-    //             The spiritual and healing research work and service of the last nine generations of my family are my spiritual roots.
-    //         </div>
-    //         <Button className='
-    //         mt-3 h-12 w-36 text-base
-    //         sm:mt-3 sm:h-12 sm:w-36 sm:text-base
-    //         md:mt-3 md:h-12 md:w-36 md:text-base
-    //         lg:mt-3 lg:h-12 lg:w-36 lg:text-base
-    //         xl:mt-3 xl:h-12 xl:w-36 xl:text-base
-    //         2xl:mt-3 2xl:h-12 2xl:w-36 2xl:text-base 
-            
-    //         bg-black text-[#e6ccb2] font-bold rounded-full
-    //         '
-    //         >
-    //             <a href="https://calendly.com/arkaconnection" target="_blank">Chat Now</a>
-                
-    //         </Button>
-    //     </div>
-
-    // </div>
+export default Hero;

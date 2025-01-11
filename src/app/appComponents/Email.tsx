@@ -3,118 +3,159 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useToast } from "@/hooks/use-toast"
+import { motion } from 'framer-motion'
+import { Mail, Send, Sparkles, Star } from 'lucide-react'
 import React, { useState } from 'react'
 
 function Email() {
-
     const { toast } = useToast();
     const [userEmail, setUserEmail] = useState<string>('');
+    const [isHovered, setIsHovered] = useState(false);
 
     const addToNewsletter = () => {
-
-        if( userEmail === '' ){
+        if (userEmail === '') {
             toast({
-                title: "No email entered",
+                title: "Please enter your email address",
+                description: "We need your email to send you our sacred wisdom.",
+                variant: "destructive"
             })
-        }
-        else{
+        } else if (!userEmail.includes('@')) {
             toast({
-                title: "You have been added to the newsletter",
+                title: "Invalid email format",
+                description: "Please enter a valid email address.",
+                variant: "destructive"
             })
+        } else {
+            toast({
+                title: "Welcome to our spiritual journey!",
+                description: "You've been successfully added to our newsletter.",
+                variant: "default"
+            })
+            setUserEmail('');
         }
-
     }
 
-  return (
-    <div className='
-    h-56 w-[90%] my-20 bg-[#edf6f9] flex flex-col justify-between items-center rounded-lg 
-    sm:h-32 sm:w-[80%] sm:my-20 sm:bg-[#edf2f4] sm:flex sm:flex-row sm:justify-between sm:items-center sm:rounded-lg 
-    md:h-32 md:w-[80%] md:my-20 md:bg-[#edf2f4] md:flex md:justify-between md:items-center md:rounded-lg
-    lg:h-32 lg:w-[80%] lg:my-20 lg:bg-[#edf2f4] lg:flex lg:justify-between lg:items-center lg:rounded-lg
-    xl:h-32 xl:w-[90%] xl:my-20 xl:bg-[#edf2f4] xl:flex xl:justify-between xl:items-center xl:rounded-lg
-    2xl:h-32 2xl:w-[90%] 2xl:my-20 2xl:bg-[#edf2f4] 2xl:flex 2xl:justify-between 2xl:items-center 2xl:rounded-lg ' >    
+    return (
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            {/* Background Elements */}
+            <div className="absolute inset-0 overflow-hidden">
+                <div className="absolute top-1/2 left-0 w-64 h-64 bg-[#B69D74]/5 rounded-full filter blur-3xl transform -translate-y-1/2"></div>
+                <div className="absolute top-1/2 right-0 w-64 h-64 bg-[#B69D74]/5 rounded-full filter blur-3xl transform -translate-y-1/2"></div>
+            </div>
 
-    {/* LEFT PART */}
-    <div className='
-    h-full w-full ml-0 flex flex-col gap-y-1 justify-center items-center
-    sm:h-full sm:w-1/2 sm:ml-7 sm:flex sm:flex-col sm:gap-y-1 sm:justify-center sm:items-start
-    md:h-full md:w-1/2 md:ml-7 md:flex md:flex-col md:gap-y-1 md:justify-center md:items-start
-    lg:h-full lg:w-1/2 lg:ml-10 lg:flex lg:flex-col lg:gap-y-1 lg:justify-center lg:items-start
-    xl:h-full xl:w-1/2 xl:ml-10 xl:flex xl:flex-col xl:gap-y-1 xl:justify-center xl:items-start
-    2xl:h-full 2xl:w-1/2 2xl:ml-10 2xl:flex 2xl:flex-col 2xl:gap-y-1 2xl:justify-center 2xl:items-start '>
-        <div className='
-        text-xl font-extrabold text-black
-        sm:text-xl sm:font-extrabold
-        md:text-2xl md:font-extrabold
-        lg:text-3xl lg:font-extrabold
-        xl:text-3xl xl:font-extrabold
-        2xl:text-3xl 2xl:font-extrabold'>
-            Want to join us?
-        </div>
-        <div className='
-        text-sm font-bold text-[#8d99ae]
-        sm:text-sm sm:font-bold sm:text-[#8d99ae]
-        md:text-base md:font-bold md:text-[#8d99ae]
-        lg:text-base lg:font-bold lg:text-[#8d99ae]
-        xl:text-base xl:font-bold xl:text-[#8d99ae]
-        2xl:text-base 2xl:font-bold 2xl:text-[#8d99ae]'
-        
-        id='emailDivSmallText'
-        >
-            Subscribe to our email and get the latest notifications
-        </div>
-    </div>
-
-    {/* RIGHT PART */}
-    <div className='
-    h-full w-full mr-0 flex justify-center items-center
-    sm:h-full sm:w-1/2 sm:mr-7 sm:flex sm:justify-end sm:items-center
-    md:h-full md:w-1/2 md:mr-7 md:flex md:justify-end md:items-center
-    lg:h-full lg:w-1/2 lg:mr-10 lg:flex lg:justify-end lg:items-center
-    xl:h-full xl:w-1/2 xl:mr-10 xl:flex xl:justify-end xl:items-center
-    2xl:h-full 2xl:w-1/2 2xl:mr-10 2xl:flex 2xl:justify-end 2xl:items-center '>
-
-        <div className='
-        h-16 w-[70%] p-1 flex justify-center items-center bg-[#8d99ae] rounded-full
-        sm:h-16 sm:w-[70%] sm:p-1 sm:flex sm:justify-center sm:items-center sm:bg-[#8d99ae]  sm:rounded-full
-        md:h-16 md:w-[70%] md:p-1 md:flex md:justify-center md:items-center md:bg-[#8d99ae]  md:rounded-full
-        lg:h-16 lg:w-[70%] lg:p-1 lg:flex lg:justify-center lg:items-center lg:bg-[#8d99ae]  lg:rounded-full
-        xl:h-16 xl:w-[70%] xl:p-1 xl:flex xl:justify-center xl:items-center xl:bg-[#8d99ae]  xl:rounded-full
-        2xl:h-16 2xl:w-[80%] 2xl:p-1 2xl:flex 2xl:justify-center 2xl:items-center 2xl:bg-[#8d99ae] 2xl:rounded-full' >
-
-            <Input className=' 
-            h-full w-[80%] text-black text-sm font-bold rounded-l-full bg-slate-200
-            sm:h-full sm:w-[80%] sm:text-black sm:text-sm sm:font-bold sm:rounded-l-full sm:bg-slate-200
-            md:h-full md:w-[70%] md:text-black md:text-sm md:font-bold md:rounded-l-full md:bg-slate-200
-            lg:h-full lg:w-[70%] lg:text-black lg:text-lg lg:font-bold lg:rounded-l-full lg:bg-slate-200
-            xl:h-full xl:w-[70%] xl:text-black xl:text-lg xl:font-bold xl:rounded-l-full xl:bg-slate-200
-            2xl:h-full 2xl:w-[70%] 2xl:text-black 2xl:text-lg 2xl:font-bold 2xl:rounded-l-full 2xl:bg-slate-200'
-            placeholder='Enter your email'
-            value={userEmail}
-            onChange={ (e) => setUserEmail(e.target.value) }
+            <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="relative bg-white rounded-2xl shadow-xl overflow-hidden"
             >
-            </Input>
-            <Button className='
-             transition-all
-            duration-300 
-            h-full w-[30%] text-sm font-bold rounded-r-full bg-[#8d99ae] hover:bg-[#9facc1]
-            sm:h-full sm:w-[30%] sm:text-sm sm:font-bold sm:rounded-r-full sm:bg-[#8d99ae] sm:hover:bg-[#9facc1]
-            md:h-full md:w-[30%] md:text-sm md:font-bold md:rounded-r-full md:bg-[#8d99ae] md:hover:bg-[#9facc1]
-            lg:h-full lg:w-[30%] lg:text-lg lg:font-bold lg:rounded-r-full lg:bg-[#8d99ae] lg:hover:bg-[#9facc1]
-            xl:h-full xl:w-[30%] xl:text-lg xl:font-bold xl:rounded-r-full xl:bg-[#8d99ae] xl:hover:bg-[#9facc1]
-            2xl:h-full 2xl:w-[30%] 2xl:text-lg 2xl:font-bold 2xl:rounded-r-full 2xl:bg-[#8d99ae] 2xl:hover:bg-[#9facc1] '
-            
-            onClick={addToNewsletter}
-            >
-                Join
-            </Button>
+                <div className="flex flex-col lg:flex-row items-center">
+                    {/* Content Section */}
+                    <div className="w-full lg:w-1/2 p-8 lg:p-12">
+                        <div className="flex items-center gap-3 mb-6">
+                            <div className="w-12 h-12 rounded-full bg-[#B69D74]/10 flex items-center justify-center">
+                                <Mail className="w-6 h-6 text-[#B69D74]" />
+                            </div>
+                            <motion.div
+                                animate={{ rotate: isHovered ? 360 : 0 }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <Sparkles className="w-5 h-5 text-[#B69D74]" />
+                            </motion.div>
+                        </div>
 
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                            Join Our Sacred Journey
+                        </h2>
+                        <p className="text-gray-600 mb-8">
+                            Subscribe to receive ancient wisdom, spiritual insights, and exclusive content 
+                            delivered directly to your inbox.
+                        </p>
+
+                        {/* Benefits List */}
+                        <div className="space-y-4 mb-8">
+                            {[
+                                'Weekly spiritual guidance',
+                                'Exclusive meditation techniques',
+                                'Early access to events',
+                                'Special ritual instructions'
+                            ].map((benefit, index) => (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                    className="flex items-center space-x-3"
+                                >
+                                    <Star className="w-4 h-4 text-[#B69D74]" />
+                                    <span className="text-gray-600">{benefit}</span>
+                                </motion.div>
+                            ))}
+                        </div>
+
+                        {/* Input Section */}
+                        <div className="relative">
+                            <div className="flex">
+                                <Input
+                                    type="email"
+                                    placeholder="Enter your email address"
+                                    value={userEmail}
+                                    onChange={(e) => setUserEmail(e.target.value)}
+                                    className="flex-1 px-6 py-4 rounded-l-full text-gray-900 bg-gray-50 
+                                             border-2 border-r-0 border-gray-100 focus:ring-2 
+                                             focus:ring-[#B69D74] focus:border-transparent"
+                                />
+                                <motion.div
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.95 }}
+                                >
+                                    <Button
+                                        onClick={addToNewsletter}
+                                        onMouseEnter={() => setIsHovered(true)}
+                                        onMouseLeave={() => setIsHovered(false)}
+                                        className="px-8 rounded-r-full bg-[#B69D74] hover:bg-[#a38a64] 
+                                                 text-white font-semibold flex items-center gap-2"
+                                    >
+                                        Subscribe
+                                        <Send className="w-4 h-4" />
+                                    </Button>
+                                </motion.div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Decorative Section */}
+                    <div className="hidden lg:block w-1/2 bg-[#344e41] p-12">
+                        <div className="h-full flex items-center justify-center">
+                            <div className="text-center text-white">
+                                <motion.div
+                                    animate={{ 
+                                        rotate: [0, 360],
+                                        scale: [1, 1.2, 1]
+                                    }}
+                                    transition={{ 
+                                        duration: 20,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }}
+                                    className="mb-6"
+                                >
+                                    <Sparkles className="w-16 h-16 text-[#B69D74]" />
+                                </motion.div>
+                                <h3 className="text-2xl font-bold mb-4">
+                                    Embrace the Divine
+                                </h3>
+                                <p className="text-gray-300">
+                                    Start your spiritual journey with us and discover the ancient wisdom 
+                                    that awaits.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
         </div>
-
-    </div>
-
-    </div>
-  )
+    )
 }
 
-export default Email
+export default Email;

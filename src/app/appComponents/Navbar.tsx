@@ -17,184 +17,138 @@ function Navbar() {
   ];
 
   return (
-    <nav className="relative w-full z-50 mb-4 mt-4">
-      <div
-        className="mx-auto w-[95%] flex justify-between items-center
-        bg-[#dad7cd] bg-opacity-35 border border-gray-400 backdrop-blur-sm
-        text-black rounded-full h-20 px-6 transition-all duration-300
-        hover:shadow-lg hover:bg-opacity-45"
-      >
-        {/* Logo */}
-        <div className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
-          <img
-            src="/arkConnection-horizontal.png"
-            alt="Website logo"
-            className="h-56 mt-2 sm:h-48 md:h-56 lg:h-64 xl:h-64 2xl:h-64
-              hover:cursor-pointer"
-            onClick={() => router.push("/")}
-          />
-        </div>
+    <nav className="fixed top-0 left-0 right-0 bg-[#EEEBE5] z-50">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex justify-between items-center h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
+                    <img
+                      src="/arkConnection-horizontal.png"
+                      alt="Website logo"
+                      className="h-56 mt-2 sm:h-48 md:h-56 lg:h-64 xl:h-64 2xl:h-64
+                        hover:cursor-pointer"
+                      onClick={() => router.push("/")}
+                    />
+                  </div>
 
-        {/* Hamburger menu for small screens */}
-        <div className="sm:hidden">
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="p-2 transition-colors duration-200 hover:bg-gray-200 rounded-full"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Desktop Navigation */}
-        <div className="text-sm md:text-base hidden sm:flex justify-center items-center gap-x-8 font-bold">
-          {navItems.map((item) => (
-            <button
-              key={item.name}
-              onClick={item.onClick}
-              className="relative group py-2"
-            >
-              <span className="relative z-10 transition-colors duration-200 hover:text-gray-600">
-                {item.name}
-              </span>
-              <span
-                className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600 transform scale-x-0
-                transition-transform duration-200 group-hover:scale-x-100"
-              />
-            </button>
-          ))}
-
-          {/* Courses Dropdown */}
-          <div className="relative group">
-            <button
-              className="flex items-center gap-1 py-2 relative group font-bold"
-              onClick={() => setIsCoursesOpen(!isCoursesOpen)}
-            >
-              <span className="relative z-10 transition-colors duration-200 hover:text-gray-600">
-                Courses
-              </span>
-              <ChevronDown
-                size={16}
-                className="transform transition-transform duration-200 group-hover:rotate-180"
-              />
-              <span
-                className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600 transform scale-x-0
-                transition-transform duration-200 group-hover:scale-x-100"
-              />
-            </button>
-          
-            <div
-              className="absolute right-0 mt-2 w-64 opacity-0 invisible group-hover:opacity-100
-              group-hover:visible transition-all duration-200 transform -translate-x-1/4"
-            >
-              <div
-                className="bg-[#dad7cd] bg-opacity-100 border border-gray-400
-                rounded-3xl overflow-hidden shadow-lg"
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-12">
+            {navItems.map((item) => (
+              <button
+                key={item.name}
+                onClick={item.onClick}
+                className="text-base font-medium text-gray-800 hover:text-gray-600 relative group"
               >
-                {CourseTags.map((course) => (
+                <span className="relative z-10">{item.name}</span>
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600 transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100" />
+              </button>
+            ))}
+
+            {/* Courses Dropdown */}
+            <div className="relative group">
+              <button
+                onClick={() => setIsCoursesOpen(!isCoursesOpen)}
+                className="flex items-center space-x-1 text-base font-medium text-gray-800 hover:text-gray-600 relative group"
+              >
+                <span className="relative z-10">Courses</span>
+                <ChevronDown size={20} className="transform transition-transform duration-200 group-hover:rotate-180" />
+                <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600 transform scale-x-0 transition-transform duration-200 group-hover:scale-x-100" />
+              </button>
+
+              <div className="absolute right-0 mt-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform">
+                <div className="bg-white rounded-lg shadow-xl overflow-hidden border border-gray-100">
+                  {CourseTags.map((course) => (
+                    <button
+                      key={course.name}
+                      onClick={() => router.push(course.path)}
+                      className="w-full text-left px-6 py-3 text-gray-700 hover:bg-gray-50 text-base font-medium transition-colors duration-150"
+                    >
+                      {course.name}
+                    </button>
+                  ))}
                   <button
-                    key={course.name}
-                    onClick={() => router.push(course.path)}
-                    className="w-full text-left px-6 py-4 hover:bg-white/30 transition-all
-                      duration-200 block text-black font-semibold"
+                    onClick={() => router.push('/courses')}
+                    className="w-full text-left px-6 py-3 text-gray-600 hover:bg-gray-50 text-base font-medium border-t border-gray-100 transition-colors duration-150"
                   >
-                    {course.name}
+                    View All
                   </button>
-                ))}
-                {/* Add the "View All" button */}
-                <button
-                  onClick={() => router.push('/courses')}
-                  className="w-full text-left px-6 py-4 hover:bg-gray-300/30 transition-all
-                    duration-200 block text-gray-700 font-semibold border-t border-gray-400"
-                >
-                  View All
-                </button>
+                </div>
               </div>
             </div>
           </div>
 
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
         <div
-          className={`
-          sm:hidden fixed inset-0 z-50 bg-[#dad7cd] bg-opacity-95
-          transition-all duration-300 ease-in-out backdrop-blur-sm
-          ${isMenuOpen ? "translate-x-0" : "translate-x-full"}
-        `}
+          className={`md:hidden absolute left-0 right-0 bg-white shadow-lg transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+          }`}
         >
-          <div className="flex flex-col items-center justify-center h-full gap-y-8">
+          <div className="px-4 pt-2 pb-3 space-y-2">
             {navItems.map((item) => (
               <button
                 key={item.name}
-                className="text-xl font-bold transition-colors duration-200
-                  hover:text-gray-600 relative group"
                 onClick={() => {
                   item.onClick();
                   setIsMenuOpen(false);
                 }}
+                className="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors duration-150"
               >
-                <span>{item.name}</span>
-                <span
-                  className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600
-                  transform scale-x-0 transition-transform duration-200
-                  group-hover:scale-x-100"
-                />
+                {item.name}
               </button>
             ))}
 
-            {/* Mobile Courses Section */}
-            <div className="flex flex-col items-center">
+            {/* Mobile Courses Menu */}
+            <div>
               <button
                 onClick={() => setIsCoursesOpen(!isCoursesOpen)}
-                className="text-xl font-bold flex items-center gap-2 mb-4"
+                className="flex w-full items-center justify-between px-4 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 rounded-md transition-colors duration-150"
               >
-                Courses
+                <span>Courses</span>
                 <ChevronDown
                   size={20}
-                  className={`transform transition-transform duration-200
-                    ${isCoursesOpen ? "rotate-180" : ""}`}
+                  className={`transform transition-transform duration-200 ${
+                    isCoursesOpen ? "rotate-180" : ""
+                  }`}
                 />
               </button>
 
-              <div className="flex flex-col items-center">
+              <div
+                className={`${
+                  isCoursesOpen ? "max-h-96" : "max-h-0"
+                } overflow-hidden transition-all duration-300 ease-in-out`}
+              >
+                {CourseTags.map((course) => (
+                  <button
+                    key={course.name}
+                    onClick={() => {
+                      router.push(course.path);
+                      setIsMenuOpen(false);
+                    }}
+                    className="block w-full text-left px-8 py-3 text-base font-medium text-gray-600 hover:bg-gray-50 transition-colors duration-150"
+                  >
+                    {course.name}
+                  </button>
+                ))}
                 <button
-                  onClick={() => setIsCoursesOpen(!isCoursesOpen)}
-                  className="text-xl font-bold flex items-center gap-2 mb-4 relative group"
+                  onClick={() => {
+                    router.push('/courses');
+                    setIsMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-8 py-3 text-base font-medium text-gray-600 hover:bg-gray-50 border-t border-gray-100 transition-colors duration-150"
                 >
-                  <span>Courses</span>
-                  <ChevronDown
-                    size={20}
-                    className={`transform transition-transform duration-200
-                      ${isCoursesOpen ? "rotate-180" : ""}`}
-                  />
-                  <span
-                    className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600 transform scale-x-0
-                    transition-transform duration-200 group-hover:scale-x-100"
-                  />
+                  View All
                 </button>
-
-                <div
-                  className={`flex flex-col items-center gap-y-4 transition-all duration-300
-                  ${isCoursesOpen ? "opacity-100 max-h-96" : "opacity-0 max-h-0 overflow-hidden"}`}
-                >
-                  {CourseTags.map((course) => (
-                    <button
-                      key={course.name}
-                      onClick={() => {
-                        router.push(course.path);
-                        setIsMenuOpen(false);
-                      }}
-                      className="text-lg font-semibold hover:text-gray-600 transition-colors duration-200
-                        relative group"
-                    >
-                      <span>{course.name}</span>
-                      <span
-                        className="absolute bottom-0 left-0 w-full h-0.5 bg-gray-600 transform scale-x-0
-                        transition-transform duration-200 group-hover:scale-x-100"
-                      />
-                    </button>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
