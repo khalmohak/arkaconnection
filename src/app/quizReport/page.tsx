@@ -1,77 +1,107 @@
 'use client'
-
-import { Button } from '@/components/ui/button';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import React, { useContext } from 'react'
-import QuizReportContext from '../context/QuizReportContext';
+import { Award, Clock, CheckCircle, XCircle, RotateCcw } from 'lucide-react';
 
-function QuizReport() {
-
-    const quizReportContext = useContext(QuizReportContext);
-    if (quizReportContext === null) {
-        throw new Error('QuizReportContext must be used within a QuizReportContextProvider');
-    }
-    const { correctAnswers } = quizReportContext;
-
-    const router = useRouter();
-
-    const goBackToHomePage = () => {
-        router.push('/');
-    }
+export default function QuizReport() {
+  const router = useRouter();
+  // In a real app, you'd get this from router.query or context
+  const mockResults = {
+    score: 8,
+    totalQuestions: 10,
+    timeSpent: 245, // seconds
+    answers: [
+      // ... answer details
+    ]
+  };
 
   return (
-
-    <div className="
-    min-h-screen w-[100%] flex flex-col justify-center items-center bg-white
-    sm:min-h-screen sm:w-[100%] sm:flex sm:flex-col sm:justify-center sm:items-center 
-    md:min-h-screen md:w-[100%] md:flex md:flex-col md:justify-center md:items-center
-    lg:min-h-screen lg:w-[100%] lg:flex lg:flex-col lg:justify-center lg:items-center 
-    xl:min-h-screen xl:w-[100%] xl:flex xl:flex-col xl:justify-center xl:items-center
-    2xl:min-h-screen 2xl:w-[100%] 2xl:flex 2xl:flex-col 2xl:justify-center 2xl:items-center">
-
-        <div className=' 
-        h-32 w-full flex justify-center items-center
-        sm:h-32 sm:w-full sm:flex sm:justify-center sm:items-center
-        md:h-32 md:w-full md:flex md:justify-center md:items-center
-        lg:h-32 lg:w-full lg:flex lg:justify-center lg:items-center
-        xl:h-32 xl:w-full xl:flex xl:justify-center xl:items-center
-        2xl:h-32 2xl:w-full 2xl:flex 2xl:justify-center 2xl:items-center'>
-            <img src="../arkConnection-horizontal.png" alt="brandImage" 
-            className='
-            h-[24rem] w-[24rem]
-            sm:h-[30rem] sm:w-[30rem]
-            md:h-[30rem] md:w-[30rem]
-            lg:h-[30rem] lg:w-[30rem]
-            xl:h-[30rem] xl:w-[30rem]
-            2xl:h-[30rem] 2xl:w-[30rem] '/>
-        </div>
-        
-        <div className=' 
-        h-44 w-full text-lg font-extrabold flex justify-center items-center
-        sm:h-44 sm:w-full sm:text-3xl sm:font-extrabold sm:flex sm:justify-center sm:items-center
-        md:h-44 md:w-full md:text-3xl md:font-extrabold md:flex md:justify-center md:items-center
-        lg:h-44 lg:w-full lg:text-3xl lg:font-extrabold lg:flex lg:justify-center lg:items-center
-        xl:h-44 xl:w-full xl:text-3xl xl:font-extrabold xl:flex xl:justify-center xl:items-center
-        2xl:h-44 2xl:w-full 2xl:text-3xl 2xl:font-extrabold 2xl:flex 2xl:justify-center 2xl:items-center'>
-            You answered {correctAnswers}/5 questions correctly!
-        </div>
-        
-        <Button className="
-        h-12 w-36 text-base bg-[#6a7486]  rounded-full text-white font-bold
-        sm:h-12 sm:w-36 sm:text-base  sm:font-bold
-        md:h-12 md:w-36 md:text-base md:font-bold
-        lg:h-12 lg:w-36 lg:text-base lg:font-bold
-        xl:h-12 xl:w-36 xl:text-base xl:font-bold
-        2xl:h-12 2xl:w-36 2xl:text-base 2xl:font-bold" 
-        onClick={goBackToHomePage}
+    <div className="min-h-screen bg-[#FAF9F6] py-16">
+      <div className="max-w-4xl mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-xl shadow-lg p-8"
         >
-            Home
-        </Button>
+          {/* Score Summary */}
+          <div className="text-center mb-12">
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              className="w-32 h-32 mx-auto mb-6 rounded-full bg-[#344e41] flex items-center justify-center"
+            >
+              <div className="text-white">
+                <div className="text-4xl font-bold">{mockResults.score}</div>
+                <div className="text-sm">out of {mockResults.totalQuestions}</div>
+              </div>
+            </motion.div>
 
-        
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              {mockResults.score >= mockResults.totalQuestions * 0.7 
+                ? "Excellent Work!" 
+                : mockResults.score >= mockResults.totalQuestions * 0.5 
+                  ? "Good Effort!" 
+                  : "Keep Practicing!"}
+            </h2>
+            <p className="text-gray-600">
+              You completed the quiz in {Math.floor(mockResults.timeSpent / 60)}m {mockResults.timeSpent % 60}s
+            </p>
+          </div>
 
+          {/* Performance Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            {[
+              { 
+                icon: <Award className="w-6 h-6 text-[#B69D74]" />,
+                label: "Score",
+                value: \`\${(mockResults.score / mockResults.totalQuestions * 100).toFixed(1)}%\`
+              },
+              {
+                icon: <Clock className="w-6 h-6 text-[#B69D74]" />,
+                label: "Avg. Time per Question",
+                value: \`\${Math.round(mockResults.timeSpent / mockResults.totalQuestions)}s\`
+              },
+              {
+                icon: <CheckCircle className="w-6 h-6 text-[#B69D74]" />,
+                label: "Correct",
+                value: mockResults.score
+              },
+              {
+                icon: <XCircle className="w-6 h-6 text-[#B69D74]" />,
+                label: "Incorrect",
+                value: mockResults.totalQuestions - mockResults.score
+              }
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-gray-50 rounded-lg p-4 text-center"
+              >
+                <div className="flex justify-center mb-2">{stat.icon}</div>
+                <div className="text-sm text-gray-600 mb-1">{stat.label}</div>
+                <div className="text-xl font-bold text-gray-900">{stat.value}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex justify-center gap-4">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => router.push('/quiz')}
+              className="px-6 py-3 bg-[#344e41] text-white rounded-lg font-medium 
+                       hover:bg-[#2a3b31] transition-colors duration-300 flex items-center gap-2"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Try Another Quiz
+            </motion.button>
+          </div>
+        </motion.div>
+      </div>
     </div>
-  )
+  );
 }
-
-export default QuizReport

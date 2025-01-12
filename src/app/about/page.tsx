@@ -1,147 +1,191 @@
+"use client";
 import React from "react";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import {
+  Sparkles,
+  Building2,
+  Users,
+  User,
+  ArrowRight,
+  GraduationCap,
+  Star,
+  ScrollText
+} from "lucide-react";
 import Navbar from "../appComponents/Navbar";
 import Footer from "../appComponents/Footer";
 
-function AboutUsPage() {
+export default function AboutPage() {
+  const router = useRouter();
+
+  // Navigation sections
+  const sections = [
+    {
+      title: "About Our Institute",
+      description: "Discover the vision, mission, and legacy of Arka Connection - where ancient wisdom meets modern learning.",
+      icon: <Building2 className="w-6 h-6" />,
+      stats: [
+        { label: "Years of Legacy", value: "9+" },
+        { label: "Students", value: "16,000+" }
+      ],
+      path: "/about/institute",
+      image: "/institute-image.jpg" // Replace with actual image
+    },
+    {
+      title: "Meet Our Founder",
+      description: "Learn about Acharya Alok Awasthi's journey and his vision for transforming lives through Vedic wisdom.",
+      icon: <User className="w-6 h-6" />,
+      stats: [
+        { label: "Experience", value: "12+ Years" },
+        { label: "Published Books", value: "3+" }
+      ],
+      path: "/about/alok",
+      image: "https://arkaconnection.in/wp-content/uploads/2023/11/maharishi.webp"
+    },
+    {
+      title: "Our Expert Instructors",
+      description: "Meet our team of accomplished educators and spiritual guides dedicated to your growth.",
+      icon: <Users className="w-6 h-6" />,
+      stats: [
+        { label: "Expert Guides", value: "700+" },
+        { label: "Specializations", value: "10+" }
+      ],
+      path: "/about/instructors",
+      image: "/instructors-image.jpg" // Replace with actual image
+    }
+  ];
+
   return (
-    <>
-      <Navbar />
-      <div className="bg-gradient-to-b from-purple-50 to-white">
-        {/* Hero Section */}
-        <section className="container mx-auto px-6 py-12 lg:py-24 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-purple-900 mb-4">
-            Gurukul Reaching to Your Doorstep
-          </h1>
-          <p className="text-lg lg:text-xl text-gray-700">
-            Restoring the Guru-Shishya Parampara
-          </p>
-        </section>
+    <div className="min-h-screen bg-[#FAF9F6]">
+      <Navbar/>
+      {/* Hero Section */}
+      <section className="relative bg-[#344e41] text-white py-20 mt-10">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-0 w-64 h-64 bg-[#B69D74]/10 rounded-full filter blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#B69D74]/10 rounded-full filter blur-3xl"></div>
+        </div>
 
-        {/* About Section */}
-        <section className="container mx-auto px-6 py-12 lg:py-24 flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2">
-            <img
-              src="https://arkaconnection.in/wp-content/uploads/2023/11/maharishi.webp"
-              alt="Acharya Alok Awasthi"
-              className="rounded-lg shadow-lg w-full"
-            />
-          </div>
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl lg:text-4xl font-bold text-purple-900 mb-6">
-              Acharya Alok Awasthi
-            </h2>
-            <p className="text-gray-700 text-lg lg:text-xl mb-4 leading-relaxed">
-              This is an institution of higher learning in the field of
-              Vedic-Studies and other Traditional Shastras. Acharya Alok Awasthi
-              has uniquely interpreted astrology and astronomy for the corporate
-              world through his expertise in decoding Vedic mantras and
-              Upanishads.
-            </p>
-            <p className="text-gray-700 text-lg lg:text-xl leading-relaxed">
-              With courses tailored for professionals, the institute bridges
-              ancient wisdom with modern applications, helping individuals
-              achieve personal and professional growth.
-            </p>
-          </div>
-        </section>
-
-        {/* Content Section */}
-        <section className="container mx-auto px-6 py-12 lg:py-24">
-          <div className="text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold text-purple-900 mb-6">
-              Why Choose Us?
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div className="space-y-6">
-              <p className="text-gray-700 text-lg leading-relaxed">
-                The concept of astrology developed by Maharishi Kapi is
-                considered a science of stars, planets, and celestial bodies
-                that extracts information about life, future events, and human
-                behavior.
-              </p>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                Acharya Awasthi has invented specialized courses for various
-                corporate roles, empowering individuals to work with their
-                dominant astronomy and achieve their goals.
-              </p>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                These courses blend the practical application of astrology with
-                a deep understanding of Vedic traditions, paving the way for a
-                unique learning experience.
-              </p>
-            </div>
-            <div className="space-y-6">
-              <p className="text-gray-700 text-lg leading-relaxed">
-                Whether you're in marketing, operations, or management, these
-                courses are designed to help you understand your dominant
-                strengths and perform successfully in your career.
-              </p>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                The institute aims to make ancient Vedic knowledge accessible to
-                modern learners, ensuring spiritual growth and professional
-                success.
-              </p>
-              <p className="text-gray-700 text-lg leading-relaxed">
-                Learn how to align your actions with the cosmic forces and
-                discover your true potential through our specialized programs.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        {/* Mission and Vision */}
-        <section className="bg-purple-50 py-12 lg:py-24">
-          <div className="container mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold text-purple-900">
-                Our Mission
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="text-gray-700 text-lg space-y-6">
-                <p>
-                  To impart education in Vedic Science in the modern context.
-                </p>
-                <p>
-                  To provide lifestyle education in Veda, Upanishad, Astrology,
-                  Numerology, Vastu, Meditation, Ayurveda, and other traditional
-                  subjects.
-                </p>
-                <p>
-                  To recognize students with certification as scholars in these
-                  fields from Maharishi Kapi.
-                </p>
-                <p>
-                  To conduct workshops, lectures, and demonstrations in the
-                  Vedic tradition to help individuals worldwide.
-                </p>
-              </div>
-              <div className="text-gray-700 text-lg space-y-6">
-                <h3 className="text-2xl font-bold text-purple-900">
-                  Our Vision
-                </h3>
-                <p>
-                  To establish spiritual well-being through Vedic knowledge and
-                  create a high level of faith and purpose to existence.
-                </p>
-                <p>
-                  To promote ethical paths to personal fulfillment and
-                  self-realization.
-                </p>
-                <p>
-                  To build a platform for learning, understanding, and
-                  practicing Vedic science in a structured and modernized
-                  manner.
-                </p>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-[#B69D74]/20 flex items-center justify-center">
+                <ScrollText className="w-8 h-8 text-[#B69D74]" />
               </div>
             </div>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-6">
+              Our Story & Legacy
+            </h1>
+            <p className="text-xl text-gray-200 max-w-3xl mx-auto">
+              Discover the journey of Arka Connection, our visionary leaders, and the experts guiding your spiritual path
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Navigation Cards Section */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {sections.map((section, index) => (
+              <motion.div
+                key={section.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group cursor-pointer"
+                onClick={() => router.push(section.path)}
+              >
+                <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 
+                             overflow-hidden h-full">
+                  {/* Image Section */}
+                  <div className="relative h-48 overflow-hidden">
+                    <img
+                      src={section.image}
+                      alt={section.title}
+                      className="w-full h-full object-cover transform transition-transform duration-300 
+                               group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    <div className="absolute top-4 right-4">
+                      <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center">
+                        {section.icon}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Content Section */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-[#B69D74] 
+                                 transition-colors duration-300">
+                      {section.title}
+                    </h3>
+                    <p className="text-gray-600 mb-6">{section.description}</p>
+
+                    {/* Stats */}
+                    <div className="flex items-center gap-6 mb-6">
+                      {section.stats.map((stat, idx) => (
+                        <div key={idx} className="flex items-center gap-2">
+                          <Star className="w-4 h-4 text-[#B69D74]" />
+                          <div>
+                            <div className="font-bold text-gray-900">{stat.value}</div>
+                            <div className="text-sm text-gray-600">{stat.label}</div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Learn More Link */}
+                    <motion.div
+                      className="flex items-center text-[#B69D74] font-medium group-hover:text-[#8a745a]"
+                      whileHover={{ x: 5 }}
+                    >
+                      Learn More
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </section>
-      </div>
-      <Footer />
-    </>
+        </div>
+      </section>
+
+      {/* Quick Stats Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { icon: <GraduationCap />, label: "Students Transformed", value: "16,000+" },
+              { icon: <Users />, label: "Expert Instructors", value: "700+" },
+              { icon: <Star />, label: "Years of Legacy", value: "9 Generations" },
+              { icon: <Sparkles />, label: "Specializations", value: "10+" }
+            ].map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-white p-6 rounded-xl border border-gray-100 hover:border-[#B69D74] 
+                         transition-colors duration-300"
+              >
+                <div className="flex flex-col items-center text-center">
+                  <div className="w-12 h-12 rounded-full bg-[#B69D74]/10 flex items-center 
+                                justify-center text-[#B69D74] mb-4">
+                    {stat.icon}
+                  </div>
+                  <p className="text-2xl font-bold text-gray-900 mb-1">{stat.value}</p>
+                  <p className="text-sm text-gray-600">{stat.label}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <Footer/>
+    </div>
   );
 }
-
-export default AboutUsPage;
