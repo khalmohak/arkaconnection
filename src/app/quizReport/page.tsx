@@ -55,12 +55,12 @@ export default function QuizReport() {
               { 
                 icon: <Award className="w-6 h-6 text-[#B69D74]" />,
                 label: "Score",
-                value: \`\${(mockResults.score / mockResults.totalQuestions * 100).toFixed(1)}%\`
+                value: `\${(mockResults.score / mockResults.totalQuestions * 100).toFixed(1)}%`
               },
               {
                 icon: <Clock className="w-6 h-6 text-[#B69D74]" />,
                 label: "Avg. Time per Question",
-                value: \`\${Math.round(mockResults.timeSpent / mockResults.totalQuestions)}s\`
+                value: `\${Math.round(mockResults.timeSpent / mockResults.totalQuestions)}s`
               },
               {
                 icon: <CheckCircle className="w-6 h-6 text-[#B69D74]" />,
