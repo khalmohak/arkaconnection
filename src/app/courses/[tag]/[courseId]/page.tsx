@@ -23,6 +23,7 @@ import { db } from "@/config/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import { useParams } from "next/navigation";
 import { CourseDetailData } from "@/data/courses";
+import TestimonialSlider from "@/app/appComponents/CourseTestemonials";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
@@ -290,7 +291,7 @@ const CourseDetail = () => {
           </div>
         </div>
       </section>
-      
+      <TestimonialSlider/>
       {/* Mentor Section */}
       <section className="py-16 bg-[#FAF9F6]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
