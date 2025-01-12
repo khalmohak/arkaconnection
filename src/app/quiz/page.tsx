@@ -36,7 +36,7 @@ export default function QuizLanding() {
     <div className="min-h-screen bg-[#FAF9F6] flex flex-col">
       <Navbar/>
       {/* Hero Section */}
-      <section className="relative bg-[#344e41] text-white py-20 mt-10">
+      <section className="relative bg-[#344e41] text-white py-20 mt-10g">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-0 w-64 h-64 bg-[#B69D74]/10 rounded-full filter blur-3xl"></div>
           <div className="absolute bottom-0 right-0 w-64 h-64 bg-[#B69D74]/10 rounded-full filter blur-3xl"></div>
