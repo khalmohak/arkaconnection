@@ -4,6 +4,7 @@ import Layout from "@/components/common/layout";
 import { servicesData } from "@/data/services";
 import { motion } from "framer-motion";
 import { Search, Star, Clock, Users, ArrowRight, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 const serviceTags = ["All", ...new Set(servicesData.map((service) => service.tag))];
 
@@ -103,9 +104,11 @@ function ServicesPage() {
               >
                 {/* Image Container */}
                 <div className="relative h-64 overflow-hidden">
-                  <img
+                  <Image
                     src={service.image}
                     alt={service.name}
+                    height={200}
+                    width={200}
                     className="w-full h-full object-cover transform transition-transform duration-300 
                              group-hover:scale-110"
                   />
