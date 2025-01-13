@@ -29,7 +29,7 @@ export default function AboutPage() {
         { label: "Students", value: "16,000+" }
       ],
       path: "/about/institute",
-      image: "/institute-image.jpg" // Replace with actual image
+      image: "/about/institute.avif"
     },
     {
       title: "Meet Our Founder",
@@ -40,7 +40,7 @@ export default function AboutPage() {
         { label: "Published Books", value: "3+" }
       ],
       path: "/about/alok",
-      image: "https://arkaconnection.in/wp-content/uploads/2023/11/maharishi.webp"
+      image:"/alok1.webp"
     },
     {
       title: "Our Expert Instructors",
@@ -51,7 +51,7 @@ export default function AboutPage() {
         { label: "Specializations", value: "10+" }
       ],
       path: "/about/instructors",
-      image: "/instructors-image.jpg" // Replace with actual image
+      image: "/about/astrologer.jpg" // Replace with actual image
     }
   ];
 

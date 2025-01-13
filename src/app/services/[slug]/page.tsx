@@ -7,6 +7,7 @@ import { Star, Clock, Calendar, ArrowRight, Sparkles, Book, CheckCircle, HelpCir
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import { useParams } from "next/navigation";
 import servicesDetail from "@/data/services";
+import Image from "next/image";
 
 const faqs = [
   {
@@ -82,7 +83,7 @@ function PriceDisplay({ priceINR }: { priceINR: number }) {
     >
       <div className="flex items-center justify-between gap-4">
         <div className="text-3xl font-bold text-[#344e41]">
-          {currency === "INR" ? "₹" : "$"}{formattedPrice}
+          {currency === "INR" ? "INR-" : "$"}{formattedPrice}
         </div>
         <motion.button
           whileHover={{ scale: 1.05 }}
@@ -101,7 +102,7 @@ function PriceDisplay({ priceINR }: { priceINR: number }) {
 function ServiceDetail() {
   const { slug } = useParams();
   const service = servicesDetail.find(
-    (item) => item.slug.toLowerCase().replace(/\s+/g, "-") === slug
+    (item) => item.slug.toLowerCase().replace(/\s+/g, "-") === slug.toLowerCase()
   );
 
   if (!service) {
@@ -135,7 +136,7 @@ function ServiceDetail() {
               >
                 <div className="flex items-center gap-2 mb-6">
                   <Sparkles className="w-5 h-5 text-[#B69D74]" />
-                  <span className="text-[#B69D74] font-medium">Sacred Service</span>
+                  <span className="text-[#B69D74] font-medium">Service</span>
                 </div>
                 
                 <h1 className="text-4xl sm:text-5xl font-bold mb-6">{service.title}</h1>
@@ -177,10 +178,12 @@ function ServiceDetail() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="relative aspect-square rounded-xl overflow-hidden shadow-2xl"
               >
-                <img
-                  src="https://arkaconnection.in/wp-content/uploads/2024/01/90f37e_732dc7d9eb8344a4b204b9493d728043mv2.webp"
+                <Image
+                  src={service.image}
                   alt="Service"
                   className="w-full h-full object-cover"
+                  height={400}
+                  width={400}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
               </motion.div>
@@ -296,7 +299,7 @@ function ServiceDetail() {
         >
           <div className="max-w-7xl mx-auto px-4 py-4 flex flex-wrap items-center justify-between gap-4">
             <div className="flex items-center gap-4">
-              <div className="text-2xl font-bold text-[#344e41]">₹5,000</div>
+              <div className="text-2xl font-bold text-[#344e41]">INR 5,000</div>
               <span className="text-gray-600">/ consultation</span>
             </div>
             

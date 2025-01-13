@@ -4,24 +4,31 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { motion } from "framer-motion";
 
+
 function SingleService({
   serviceImage,
   serviceName,
+  description,
+  price,
+  discountedPrice,
   slugName,
   divIndex,
 }: {
   serviceImage: string;
   serviceName: string;
+  description: string;
+  price: number;
+  discountedPrice: number;
   slugName: string;
   divIndex: number;
 }) {
   const router = useRouter();
+  
   const routeToService = () => {
-    if (divIndex === 0) {
-      router.push("/services/Finding-Shubh-Muhurta");
-    }
+    router.push("/services/"+slugName);
   };
-
+  // Calculate savings percentage
+  const savingsPercent = Math.round(((price - discountedPrice) / price) * 100);
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -32,47 +39,75 @@ function SingleService({
     >
       <div
         onClick={routeToService}
-        className="relative h-64 sm:h-72 md:h-80 lg:h-96 w-full rounded-xl overflow-hidden cursor-pointer
+        className="relative h-[28rem] w-full rounded-xl overflow-hidden cursor-pointer
                  transition-all duration-300 shadow-lg hover:shadow-xl bg-white"
       >
+        {/* Savings Badge */}
+        <div className="absolute top-4 right-4 bg-[#B69D74] text-white px-3 py-1 rounded-full 
+                      text-sm font-semibold z-20">
+          Save {savingsPercent}%
+        </div>
         {/* Decorative Border */}
         <div className="absolute inset-0 border-2 border-[#B69D74]/20 rounded-xl z-10 
                       group-hover:border-[#B69D74]/40 transition-colors duration-300" />
-
         {/* Image Container */}
         <motion.div
           whileHover={{ scale: 1.05 }}
           transition={{ duration: 0.3 }}
-          className="h-3/4 w-full overflow-hidden"
+          className="h-1/2 w-full overflow-hidden"
         >
           <img
             src={serviceImage}
             alt={serviceName}
             className="h-full w-full object-cover transform transition-transform duration-300"
           />
-          {/* Overlay */}
+          {/* Image Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white opacity-90" />
         </motion.div>
-
-        {/* Content */}
+        {/* Content Container */}
         <div className="absolute bottom-0 left-0 right-0 p-6 text-center">
-          <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 
-                       group-hover:text-[#B69D74] transition-colors duration-300">
-            {serviceName}
-          </h3>
+          <div className="max-w-full overflow-hidden">
+            {/* Title */}
+            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-3 
+                         group-hover:text-[#B69D74] transition-colors duration-300
+                         overflow-hidden text-ellipsis whitespace-nowrap px-2">
+              {serviceName}
+            </h3>
+            
+            {/* Description */}
+            <p className="text-sm text-gray-600 mb-4 line-clamp-3 px-2">
+              {description}
+            </p>
+          </div>
+          {/* Price Section */}
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span className="text-2xl font-bold text-[#344e41]">
+              INR {discountedPrice}
+            </span>
+            <span className="text-lg text-gray-400 line-through">
+              INR {price}
+            </span>
+          </div>
           
-          {/* Learn More Link */}
+          {/* Learn More Button */}
           <motion.div
-            initial={{ opacity: 0 }}
+            initial={{ opacity: 0.8 }}
             whileHover={{ opacity: 1 }}
-            className="text-sm text-[#B69D74] font-medium"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#344e41]/10 
+                     text-[#344e41] font-medium group-hover:bg-[#344e41] group-hover:text-white 
+                     transition-all duration-300"
           >
-            Learn More →
+            Learn More
+            <motion.span
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
+              →
+            </motion.span>
           </motion.div>
         </div>
-
         {/* Decorative Elements */}
-        <div className="absolute top-4 right-4 text-2xl opacity-0 group-hover:opacity-100 
+        <div className="absolute top-4 left-4 text-2xl opacity-0 group-hover:opacity-100 
                       transition-opacity duration-300 text-[#B69D74]">
           ✧
         </div>
@@ -120,6 +155,9 @@ function OurServices() {
               serviceName={service.name}
               slugName={service.slug}
               divIndex={index}
+              discountedPrice={service.discountedPrice}
+              price={service.price}
+              description={service.description}
             />
           ))}
         </div>

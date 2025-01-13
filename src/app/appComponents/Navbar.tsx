@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { CourseTags } from "@/data/courses";
+import Image from "next/image";
 
 function Navbar() {
   const router = useRouter();
@@ -22,14 +23,16 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
-          <div className="flex-shrink-0 transition-transform duration-300 hover:scale-105">
-            <img
+          <div 
+            onClick={() => router.push("/")} 
+            className="flex-shrink-0 transition-transform duration-300 hover:scale-105 cursor-pointer"
+          >
+            <Image
               src="/arkConnection-horizontal.png"
+              width={200}
+              height={300}
               alt="Website logo"
-              className="h-56 mt-2 sm:h-48 md:h-56 lg:h-64 xl:h-64 2xl:h-64
-                        hover:cursor-pointer"
-              onClick={() => router.push("/")}
-            />
+              className="h-56 mt-2 sm:h-48 md:h-56 lg:h-64 xl:h-64 2xl:h-64 hover:cursor-pointer"            />
           </div>
 
           {/* Desktop Navigation */}
@@ -94,13 +97,11 @@ function Navbar() {
 
         {/* Mobile menu */}
         <div
-          className={`md:hidden absolute left-0 right-0 bg-white shadow-lg transition-all duration-300 ease-in-out ${
-            isMenuOpen
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-full opacity-0"
+          className={`md:hidden fixed left-0 right-0 top-20 bg-white shadow-lg transition-all duration-300 ease-in-out ${
+            isMenuOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
         >
-          <div className="px-4 pt-2 pb-3 space-y-2">
+          <div className="px-4 pt-2 pb-3 space-y-1">
             {navItems.map((item) => (
               <button
                 key={item.name}

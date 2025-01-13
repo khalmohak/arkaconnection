@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Sparkles, Book, Star } from "lucide-react";
 import Navbar from "@/app/appComponents/Navbar";
 import Footer from "@/app/appComponents/Footer";
+import Image from "next/image";
 
 function AboutFounder() {
   return (
@@ -39,8 +40,10 @@ function AboutFounder() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative aspect-square rounded-xl overflow-hidden shadow-2xl"
             >
-              <img
-                src="https://arkaconnection.in/wp-content/uploads/2023/11/maharishi.webp"
+              <Image
+                src={"/alok1.webp"}
+                width={100}
+                height={100}
                 alt="Acharya Alok Awasthi"
                 className="w-full h-full object-cover"
               />

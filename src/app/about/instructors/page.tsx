@@ -11,7 +11,7 @@ const instructors = [
     id: 1,
     name: "Acharya Alok Awasthi",
     role: "Founder & Lead Instructor",
-    image: "https://arkaconnection.in/wp-content/uploads/2023/11/maharishi.webp",
+    image:"/alok1.webp",
     expertise: ["Vedic Astrology", "Psychology", "Vedanta"],
     experience: "12+ years",
     studentsCount: "16,000+",
@@ -27,21 +27,21 @@ const instructors = [
       instagram: "#"
     }
   },
-  {
-    id: 2,
-    name: "Dr. Ananya Sharma",
-    role: "Senior Vedic Instructor",
-    image: "/placeholder-instructor.jpg",
-    expertise: ["Ayurveda", "Meditation", "Yoga"],
-    experience: "8+ years",
-    studentsCount: "5,000+",
-    description: "Specializes in integrating traditional Ayurvedic practices with modern wellness approaches.",
-    achievements: [
-      "Ph.D. in Ayurvedic Sciences",
-      "Published researcher",
-      "Wellness consultant"
-    ]
-  },
+  // {
+  //   id: 2,
+  //   name: "Dr. Ananya Sharma",
+  //   role: "Senior Vedic Instructor",
+  //   image: "/placeholder-instructor.jpg",
+  //   expertise: ["Ayurveda", "Meditation", "Yoga"],
+  //   experience: "8+ years",
+  //   studentsCount: "5,000+",
+  //   description: "Specializes in integrating traditional Ayurvedic practices with modern wellness approaches.",
+  //   achievements: [
+  //     "Ph.D. in Ayurvedic Sciences",
+  //     "Published researcher",
+  //     "Wellness consultant"
+  //   ]
+  // },
   // Add more instructors as needed
 ];
 

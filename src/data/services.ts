@@ -6,7 +6,7 @@ export const servicesData = [
     price: 100,
     discountedPrice: 80,
     slug: "finding-shubh-muhurta",
-    image: "https://arkaconnection.in/wp-content/uploads/2024/01/90f37e_732dc7d9eb8344a4b204b9493d728043mv2.webp",
+    image:"/services/shubh.jpg"
   },
   {
     tag: "Medical",
@@ -15,7 +15,7 @@ export const servicesData = [
     price: 120,
     discountedPrice: 90,
     slug: "medical-diagnosis-with-karmic-records",
-    image: "https://arkaconnection.in/wp-content/uploads/2024/01/90f37e_f6390b3ab9fe472ca749a563d601afb1mv2.webp",
+    image:"/services/medical.jpg"
   },
   {
     tag: "Astrology",
@@ -24,7 +24,7 @@ export const servicesData = [
     price: 150,
     discountedPrice: 120,
     slug: "birth-chart-match-making",
-    image: "./BirthChart.jpg",
+    image:"/services/birth-chart.jpg"
   },
   {
     tag: "Vastu",
@@ -33,7 +33,7 @@ export const servicesData = [
     price: 200,
     discountedPrice: 150,
     slug: "vastu-consultation-services",
-    image: "./vastu.jpg",
+    image:"/services/vastu-consultation.jpg"
   },
   {
     tag: "Business",
@@ -42,7 +42,7 @@ export const servicesData = [
     price: 300,
     discountedPrice: 250,
     slug: "arka-connection-business-retainer-plan",
-    image: "https://arkaconnection.in/wp-content/uploads/2024/01/11062b_acf574ddd70b46e0b38086256ea2ddbcmv2.webp",
+    image:"/services/business-retainer.avif"
   },
   {
     tag: "Consultation",
@@ -51,7 +51,7 @@ export const servicesData = [
     price: 180,
     discountedPrice: 150,
     slug: "90-minutes-astrology-consultation",
-    image: "./90MinAstrology.jpg",
+    image:"/services/astrology-consultation.jpg"
   },
   {
     tag: "Consultation",
@@ -60,7 +60,7 @@ export const servicesData = [
     price: 120,
     discountedPrice: 100,
     slug: "60-minutes-astrology-consultation",
-    image: "./60MinAstrology.jpg",
+    image:"/services/astrology-consultation2.jpg"
   },
   {
     tag: "Consultation",
@@ -69,7 +69,7 @@ export const servicesData = [
     price: 80,
     discountedPrice: 60,
     slug: "30-minutes-astrology-consultation",
-    image: "./30MinAstrology.jpg",
+    image:"/services/astrology-consultation3.jpg"
   }
 ];
 
@@ -77,6 +77,7 @@ export const servicesData = [
 const servicesDetail = [
   {
     slug: "finding-shubh-muhurta",
+    image:"/services/shubh.jpg",
     title: "Finding Shubh Muhurta",
     description:
       "Medical Astrology is an extremely specialized field. An expert astrologer can look at the birth chart of a person and pinpoint potential weaknesses or diseases. Medical Astrology can provide vital, life-saving information. Remember, once health is lost, everything is lost. Through its applications, one can solve medical problems before they onset.",
@@ -88,6 +89,7 @@ const servicesDetail = [
   },
   {
     slug: "medical-diagnosis-with-karmic-records",
+    image:"/services/medical.jpg",
     title: "Medical Diagnosis with Karmic Records Reading",
     description:
       "Medical Astrology is an extremely specialized field. An expert astrologer can look at the birth chart of a person and pinpoint potential weaknesses or diseases. Medical Astrology can provide vital, life-saving information. Remember, once health is lost, everything is lost. Through its applications, one can solve medical problems before they onset.",
@@ -99,6 +101,7 @@ const servicesDetail = [
   },
   {
     slug: "birth-chart-match-making",
+    image:"/services/birth-chart.jpg",
     title: "Birth Chart Match Making",
     description:
       "Birth Chart Matching is done for the sole purpose of ensuring a couple enjoys a happy married life. We have a scientific approach to Horoscope Matching.",
@@ -115,6 +118,7 @@ const servicesDetail = [
   },
   {
     slug: "vastu-consultation-services",
+    image:"/services/vastu-consultation.jpg",
     title: "Vastu Consultation Services",
     description:
       "Do you want Vastu to work for you? Seek the expertise of the best Vastu Shastra consultant. Vastu is ONLY EFFECTIVE based on your birth chart/horoscope and energies.",
@@ -134,6 +138,7 @@ const servicesDetail = [
   },
   {
     slug: "arka-connection-business-retainer-plan",
+    image:"/services/business-retainer.avif",
     title: "Arka Connection Business Retainer Plan",
     description:
       "What makes you reach your destination faster? Taking the right turns. Advisors provide unique perspectives to spot opportunities and guide you toward growth.",
@@ -154,6 +159,7 @@ const servicesDetail = [
   },
   {
     slug: "90-minutes-astrology-consultation",
+    image:"/services/astrology-consultation.jpg",
     title: "90-Minutes Astrology Consultation",
     description:
       "Foresight and Planning are the secret strategies of successful people. Our detailed 90-Minutes Astrology Consultation provides a 360-degree top-down view of the road ahead.",
@@ -161,12 +167,14 @@ const servicesDetail = [
   },
   {
     slug: "60-minutes-astrology-consultation",
+    image:"/services/astrology-consultation2.jpg",
     title: "60-Minutes Astrology Consultation",
     description:
       "Some problems may persist, or new challenges appear. Our 60-Minutes Astrology Consultation gives you Guidance, Awareness, and Remedies to solve your problems.",
   },
   {
     slug: "30-minutes-astrology-consultation",
+    image:"/services/astrology-consultation3.jpg",
     title: "30-Minutes Astrology Consultation",
     description:
       "Do you have a pressing problem that requires an immediate solution? Our 30-Minutes Quick Astrology Followup banishes your tension and stress.",

@@ -24,6 +24,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { useParams } from "next/navigation";
 import { CourseDetailData } from "@/data/courses";
 import TestimonialSlider from "@/app/appComponents/CourseTestemonials";
+import Image from "next/image";
 
 const CourseDetail = () => {
   const { courseId } = useParams();
@@ -137,20 +138,14 @@ const CourseDetail = () => {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative aspect-video rounded-xl overflow-hidden shadow-2xl"
+              // className="relative aspect-video rounded-xl overflow-hidden shadow-2xl"
             >
-              <div className="absolute inset-0 bg-black/50 flex items-center justify-center group">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center cursor-pointer"
-                >
-                  <Play className="w-6 h-6 text-[#344e41] ml-1" />
-                </motion.div>
-              </div>
-              <img
-                src={courseData.image || "/course-preview.jpg"}
+              <Image
+                src={courseData.image}
                 alt="Course Preview"
                 className="w-full h-full object-cover"
+                width={200}
+                height={300}
               />
             </motion.div>
           </div>
@@ -311,10 +306,12 @@ const CourseDetail = () => {
                   whileHover={{ scale: 1.05 }}
                   className="relative w-48 h-48 rounded-full overflow-hidden shadow-xl"
                 >
-                  <img
-                    src={courseData.mentor.image}
+                  <Image
+                    src={"/alok1.webp"}
                     alt={courseData.mentor.name}
                     className="w-full h-full object-cover"
+                    width={100}
+                    height={100}
                   />
                   <div className="absolute inset-0 bg-[#B69D74]/10 rounded-full" />
                 </motion.div>
@@ -382,10 +379,12 @@ const CourseDetail = () => {
                   className="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl 
                            transition-all duration-300"
                 >
-                  <div className="relative h-48 overflow-hidden">
-                    <img
+                  <div className="relative overflow-hidden">
+                    <Image
                       src={item.image}
                       alt={item.title}
+                      height={100}
+                      width={100}
                       className="w-full h-full object-cover transform transition-transform duration-300 
                                group-hover:scale-110"
                     />
